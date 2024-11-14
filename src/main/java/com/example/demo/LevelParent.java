@@ -12,6 +12,7 @@ import javafx.scene.input.*;
 import javafx.util.Duration;
 
 public abstract class LevelParent extends Observable {
+	private boolean levelCompleted = false;
 
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final int MILLISECOND_DELAY = 50;
@@ -74,8 +75,17 @@ public abstract class LevelParent extends Observable {
 	}
 
 	public void goToNextLevel(String levelName) {
+		if (levelCompleted) {
+			return;
+		}
+		/*System.out.println("Attempting to go to the next level: " + levelName);
+		if (countObservers() == 0) {
+			System.err.println("Error: No observers registered.");
+		}*/
 		setChanged();
 		notifyObservers(levelName);
+		//System.out.println("Level change notified.");
+		levelCompleted=true;
 	}
 
 	private void updateScene() {
@@ -98,6 +108,7 @@ public abstract class LevelParent extends Observable {
 		KeyFrame gameLoop = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> updateScene());
 		timeline.getKeyFrames().add(gameLoop);
 	}
+
 
 	private void initializeBackground() {
 		background.setFocusTraversable(true);
