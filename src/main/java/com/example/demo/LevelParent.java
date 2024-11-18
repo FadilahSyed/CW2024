@@ -70,6 +70,7 @@ public abstract class LevelParent extends Observable {
 	}
 
 	public void startGame() {
+		levelCompleted=false;
 		background.requestFocus();
 		timeline.play();
 	}

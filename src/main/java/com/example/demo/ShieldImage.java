@@ -14,18 +14,25 @@ public class ShieldImage extends ImageView {
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
 		//this.setImage(new Image(IMAGE_NAME));
-		this.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/demo/images/shield.png")).toExternalForm()));
-		this.setVisible(false);
+		//this.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/demo/images/shield.png")).toExternalForm()));
+		//this.setVisible(false);
+		try {
+			this.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/example/demo/images/shield.png")).toExternalForm()));
+		} catch (NullPointerException e) {
+			System.out.println("Error loading image: shield.png");
+		}
 		this.setFitHeight(SHIELD_SIZE);
 		this.setFitWidth(SHIELD_SIZE);
 	}
 
 	public void showShield() {
 		this.setVisible(true);
+		System.out.println("1");
 	}
 	
 	public void hideShield() {
 		this.setVisible(false);
+		System.out.println("2");
 	}
 
 }
