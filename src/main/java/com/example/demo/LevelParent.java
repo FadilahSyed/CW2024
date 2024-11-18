@@ -12,7 +12,7 @@ import javafx.scene.input.*;
 import javafx.util.Duration;
 
 public abstract class LevelParent extends Observable {
-	private boolean levelCompleted = false;
+	private boolean levelCompleted = false; //flag is true when the level is completed
 
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final int MILLISECOND_DELAY = 50;
@@ -70,23 +70,18 @@ public abstract class LevelParent extends Observable {
 	}
 
 	public void startGame() {
-		levelCompleted=false;
+		levelCompleted=false; //levelCompleted flag reset when level starts
 		background.requestFocus();
 		timeline.play();
 	}
 
 	public void goToNextLevel(String levelName) {
 		if (levelCompleted) {
-			return;
+			return; //ensures method is called once only
 		}
-		/*System.out.println("Attempting to go to the next level: " + levelName);
-		if (countObservers() == 0) {
-			System.err.println("Error: No observers registered.");
-		}*/
 		setChanged();
 		notifyObservers(levelName);
-		//System.out.println("Level change notified.");
-		levelCompleted=true;
+		levelCompleted=true; //sets flag to prevent repetition
 	}
 
 	private void updateScene() {

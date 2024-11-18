@@ -30,7 +30,11 @@ public class LevelView {
 		root.getChildren().add(winImage);
 		winImage.showWinImage();
 	}
-	
+	/*public void showWinImage() {
+		root.getChildren().add(winImage);
+	}*/
+
+
 	public void showGameOverImage() {
 		root.getChildren().add(gameOverImage);
 	}
