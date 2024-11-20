@@ -9,27 +9,27 @@ public class HeartDisplay {
 	private static final String HEART_IMAGE_NAME = "heart.png";
 	private static final int HEART_HEIGHT = 50;
 	private static final int INDEX_OF_FIRST_ITEM = 0;
-	private HBox container;
-	private double containerXPosition;
-	private double containerYPosition;
-	private int numberOfHeartsToDisplay;
+	private final HBox container = new HBox();
+	//private double containerXPosition;
+	//private double containerYPosition;
+	//private int numberOfHeartsToDisplay;
 	
 	public HeartDisplay(double xPosition, double yPosition, int heartsToDisplay) {
-		this.containerXPosition = xPosition;
-		this.containerYPosition = yPosition;
-		this.numberOfHeartsToDisplay = heartsToDisplay;
-		initializeContainer();
-		initializeHearts();
+		container.setLayoutX(xPosition);
+		container.setLayoutY(yPosition);
+		//this.numberOfHeartsToDisplay = heartsToDisplay;
+		//initializeContainer();
+		initializeHearts(heartsToDisplay);
 	}
 	
-	private void initializeContainer() {
+	/*private void initializeContainer() {
 		container = new HBox();
 		container.setLayoutX(containerXPosition);
 		container.setLayoutY(containerYPosition);		
-	}
+	}*/
 	
-	private void initializeHearts() {
-		for (int i = 0; i < numberOfHeartsToDisplay; i++) {
+	private void initializeHearts(int numberOfHearts) {
+		for (int i = 0; i < numberOfHearts; i++) {
 			ImageView heart = new ImageView(ImageLoader.load(HEART_IMAGE_NAME));
 			heart.setFitHeight(HEART_HEIGHT);
 			heart.setPreserveRatio(true);
