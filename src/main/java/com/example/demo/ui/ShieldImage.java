@@ -1,19 +1,19 @@
 package com.example.demo.ui;
 
-import javafx.scene.image.Image;
+import com.example.demo.utils.ImageLoader;
 import javafx.scene.image.ImageView;
 
 import java.util.Objects;
 
 public class ShieldImage extends ImageView {
 	
-	private static final String IMAGE_NAME = "/com/example/demo/images/shield.png";
+	private static final String IMAGE_NAME = "shield.png";
 	private static final int SHIELD_SIZE = 400;
 	
 	public ShieldImage(double xPosition, double yPosition) {
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
-		this.setImage(new Image(Objects.requireNonNull(getClass().getResource(IMAGE_NAME)).toExternalForm()));
+		this.setImage(ImageLoader.load(IMAGE_NAME));
 		this.setVisible(false);
 		this.setFitHeight(SHIELD_SIZE);
 		this.setFitWidth(SHIELD_SIZE);
