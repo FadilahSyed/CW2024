@@ -1,6 +1,8 @@
 package com.example.demo.core;
 
 import com.example.demo.actors.Boss;
+import com.example.demo.actors.MovementPattern;
+import com.example.demo.actors.ShieldManager;
 import com.example.demo.ui.LevelView;
 import com.example.demo.ui.LevelViewLevelTwo;
 
@@ -10,6 +12,8 @@ public class LevelTwo extends LevelParent {
 	private static final int PLAYER_INITIAL_HEALTH = 5;
 	private final Boss boss;
 	private LevelViewLevelTwo levelView;
+	private MovementPattern movementPattern;
+	private ShieldManager shieldManager;
 
 	public LevelTwo(double screenHeight, double screenWidth) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);

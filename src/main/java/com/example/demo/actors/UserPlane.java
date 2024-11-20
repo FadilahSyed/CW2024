@@ -4,6 +4,7 @@ import com.example.demo.core.UserProjectile;
 
 public class UserPlane extends FighterPlane {
 
+	//constants
 	private static final String IMAGE_NAME = "userplane.png";
 	private static final double Y_UPPER_BOUND = -40;
 	private static final double Y_LOWER_BOUND = 600.0;
@@ -13,14 +14,18 @@ public class UserPlane extends FighterPlane {
 	private static final int VERTICAL_VELOCITY = 8;
 	private static final int PROJECTILE_X_POSITION = 110;
 	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
+
+	//instance variables
 	private int velocityMultiplier;
 	private int numberOfKills;
 
+	//constructor
 	public UserPlane(int initialHealth) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
 		velocityMultiplier = 0;
 	}
-	
+
+	//public methods
 	@Override
 	public void updatePosition() {
 		if (isMoving()) {
@@ -43,10 +48,6 @@ public class UserPlane extends FighterPlane {
 		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
-	private boolean isMoving() {
-		return velocityMultiplier != 0;
-	}
-
 	public void moveUp() {
 		velocityMultiplier = -1;
 	}
@@ -65,6 +66,11 @@ public class UserPlane extends FighterPlane {
 
 	public void incrementKillCount() {
 		numberOfKills++;
+	}
+
+	//private methods
+	private boolean isMoving() {
+		return velocityMultiplier != 0;
 	}
 
 }
