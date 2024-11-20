@@ -13,14 +13,17 @@ public class Main extends Application {
 	private Controller myController;
 
 	@Override
-	public void start(Stage stage) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		stage.setTitle(TITLE);
-		stage.setResizable(false);
-		stage.setHeight(SCREEN_HEIGHT);
-		stage.setWidth(SCREEN_WIDTH);
-		myController = new Controller(stage);
-		myController.launchGame();
+	public void start(Stage stage) {
+		try {
+			stage.setTitle(TITLE);
+			stage.setResizable(false);
+			stage.setHeight(SCREEN_HEIGHT);
+			stage.setWidth(SCREEN_WIDTH);
+			myController = new Controller(stage);
+			myController.launchGame();
+		} catch (Exception e) {
+			System.err.println("error launching game: " + e.getMessage());
+		}
 	}
 
 	public static void main(String[] args) {

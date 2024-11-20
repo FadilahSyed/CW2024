@@ -2,9 +2,6 @@ package com.example.demo.actors;
 
 import com.example.demo.core.BossProjectile;
 import com.example.demo.ui.LevelViewLevelTwo;
-import com.example.demo.actors.ShieldManager;
-import com.example.demo.actors.MovementPattern;
-
 
 public class Boss extends FighterPlane {
 
