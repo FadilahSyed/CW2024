@@ -1,6 +1,10 @@
 package com.example.demo.actors;
 
-import com.example.demo.core.BossProjectile;
+import com.example.demo.actors.movement.MovementPattern;
+import com.example.demo.actors.movement.MovementStrategy;
+import com.example.demo.actors.shield.ShieldManager;
+import com.example.demo.actors.shield.ShieldStrategy;
+import com.example.demo.projectiles.ProjectileFactory;
 import com.example.demo.ui.LevelViewLevelTwo;
 
 public class Boss extends FighterPlane {
@@ -12,45 +16,47 @@ public class Boss extends FighterPlane {
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
 	private static final double BOSS_FIRE_RATE = .04;
 	private static final int IMAGE_HEIGHT = 300;
-	private static final int HEALTH = 100;
+	private static final int HEALTH = 50;
 	private static final int Y_POSITION_UPPER_BOUND = -100;
 	private static final int Y_POSITION_LOWER_BOUND = 475;
 
-	private final MovementPattern movementPattern;
-	private final ShieldManager shieldManager;
+	private final MovementStrategy movementStrategy;
+	private final ShieldStrategy shieldStrategy;
 
 	//constructor
 	public Boss(LevelViewLevelTwo levelView) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
-        this.movementPattern = new MovementPattern();
-        this.shieldManager = new ShieldManager(levelView);
+		this.movementStrategy = new MovementPattern();
+		this.shieldStrategy = new ShieldManager(levelView);
 	}
 
 	//public methods
 	@Override
 	public void updatePosition() {
 		double initialTranslateY = getTranslateY();
-		moveVertically(movementPattern.getNextMove());
+		moveVertically(movementStrategy.getNextMove());
 		double currentPosition = getLayoutY() + getTranslateY();
 		if (currentPosition < Y_POSITION_UPPER_BOUND || currentPosition > Y_POSITION_LOWER_BOUND) {
 			setTranslateY(initialTranslateY);
 		}
 	}
-	
+
 	@Override
 	public void updateActor() {
 		updatePosition();
-		shieldManager.updateShield();
+		shieldStrategy.updateShield();
 	}
 
 	@Override
 	public ActiveActorDestructible fireProjectile() {
-		return shouldFire(BOSS_FIRE_RATE) ? new BossProjectile(getProjectileInitialPosition()) : null;
+		return shouldFire(BOSS_FIRE_RATE)
+				? ProjectileFactory.createProjectile("boss",getLayoutX(),getProjectileInitialPosition())
+				: null;
 	}
-	
+
 	@Override
 	public void takeDamage() {
-		if (!shieldManager.isShielded()) {
+		if (!shieldStrategy.isShielded()) {
 			super.takeDamage();
 		}
 	}
@@ -58,6 +64,7 @@ public class Boss extends FighterPlane {
 	private double getProjectileInitialPosition() {
 		return getLayoutY() + getTranslateY() + PROJECTILE_Y_POSITION_OFFSET;
 	}
+}
 	//private methods
 	/*private void initializeMovePattern() {
 		for (int i = 0; i < MOVE_FREQUENCY_PER_CYCLE; i++) {
@@ -114,4 +121,4 @@ public class Boss extends FighterPlane {
 		levelView.hideShield(); //calls method from levelviewlevel2
 	}*/
 
-}
+

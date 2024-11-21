@@ -1,10 +1,10 @@
-package com.example.demo.actors;
+package com.example.demo.actors.movement;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MovementPattern {
+public class MovementPattern implements MovementStrategy {
     private static final int VERTICAL_VELOCITY = 8;
     private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
     private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
