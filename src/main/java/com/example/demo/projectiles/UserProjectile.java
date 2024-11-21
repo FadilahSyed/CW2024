@@ -1,6 +1,6 @@
-package com.example.demo.core;
+package com.example.demo.projectiles;
 
-import com.example.demo.core.Projectile;
+import com.example.demo.projectiles.Projectile;
 
 public class UserProjectile extends Projectile {
 

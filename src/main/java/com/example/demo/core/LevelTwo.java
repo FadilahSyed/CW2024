@@ -1,8 +1,6 @@
 package com.example.demo.core;
 
 import com.example.demo.actors.Boss;
-import com.example.demo.actors.MovementPattern;
-import com.example.demo.actors.ShieldManager;
 import com.example.demo.ui.LevelView;
 import com.example.demo.ui.LevelViewLevelTwo;
 

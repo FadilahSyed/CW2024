@@ -18,3 +18,11 @@ public class LevelLoader {
     }
 }
 
+/*public class LevelFactory {
+    public static LevelParent createLevel(String levelClassName, Stage stage)
+            throws ReflectiveOperationException {
+        return LevelLoader.loadLevel(levelClassName, stage.getHeight(), stage.getWidth());
+    }
+}
+*/
+

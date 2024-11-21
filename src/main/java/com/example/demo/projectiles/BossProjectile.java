@@ -1,4 +1,6 @@
-package com.example.demo.core;
+package com.example.demo.projectiles;
+
+import com.example.demo.projectiles.Projectile;
 
 public class BossProjectile extends Projectile {
 	
@@ -15,7 +17,7 @@ public class BossProjectile extends Projectile {
 	public void updatePosition() {
 		moveHorizontally(HORIZONTAL_VELOCITY);
 	}
-	
+
 	@Override
 	public void updateActor() {
 		updatePosition();

@@ -9,4 +9,7 @@ module com.example.demo {
     opens com.example.demo.actors to javafx.fxml;
 
     exports com.example.demo.controller;
+    opens com.example.demo.projectiles to javafx.fxml;
+    opens com.example.demo.actors.movement to javafx.fxml;
+    opens com.example.demo.actors.shield to javafx.fxml;
 }

@@ -15,16 +15,16 @@ public class EnemyPlane extends FighterPlane {
 	private static final int INITIAL_HEALTH = 1;
 	private static final double FIRE_RATE = .01;
 
-	private final MovementStrategy movementStrategy;
+	//private final MovementStrategy movementStrategy;
 
 	public EnemyPlane(double initialXPos, double initialYPos) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH);
-		this.movementStrategy=new MovementPattern();
+		//this.movementStrategy=new MovementPattern();
 	}
 
 	@Override
 	public void updatePosition() {
-		moveHorizontally(HORIZONTAL_VELOCITY + movementStrategy.getNextMove());
+		moveHorizontally(HORIZONTAL_VELOCITY);
 	}
 
 	@Override
