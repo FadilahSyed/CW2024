@@ -1,6 +1,9 @@
 package com.example.demo.actors;
 
-import com.example.demo.core.EnemyProjectile;
+import com.example.demo.actors.movement.MovementPattern;
+import com.example.demo.actors.movement.MovementStrategy;
+import com.example.demo.projectiles.EnemyProjectile;
+import com.example.demo.projectiles.ProjectileFactory;
 
 public class EnemyPlane extends FighterPlane {
 
@@ -12,21 +15,24 @@ public class EnemyPlane extends FighterPlane {
 	private static final int INITIAL_HEALTH = 1;
 	private static final double FIRE_RATE = .01;
 
+	private final MovementStrategy movementStrategy;
+
 	public EnemyPlane(double initialXPos, double initialYPos) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH);
+		this.movementStrategy=new MovementPattern();
 	}
 
 	@Override
 	public void updatePosition() {
-		moveHorizontally(HORIZONTAL_VELOCITY);
+		moveHorizontally(HORIZONTAL_VELOCITY + movementStrategy.getNextMove());
 	}
 
 	@Override
 	public ActiveActorDestructible fireProjectile() {
 		if (Math.random() < FIRE_RATE) {
-			double projectileXPosition = getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET);
-			double projectileYPosition = getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET);
-			return new EnemyProjectile(projectileXPosition, projectileYPosition);
+			return ProjectileFactory.createProjectile("enemy",
+					getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET),
+					getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 		}
 		return null;
 	}

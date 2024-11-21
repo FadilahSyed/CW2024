@@ -1,6 +1,7 @@
 package com.example.demo.actors;
 
-import com.example.demo.core.UserProjectile;
+import com.example.demo.projectiles.ProjectileFactory;
+import com.example.demo.projectiles.UserProjectile;
 
 public class UserPlane extends FighterPlane {
 
@@ -45,7 +46,7 @@ public class UserPlane extends FighterPlane {
 	
 	@Override
 	public ActiveActorDestructible fireProjectile() {
-		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+		return ProjectileFactory.createProjectile("user",getProjectileXPosition(PROJECTILE_X_POSITION),getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
 	public void moveUp() {
