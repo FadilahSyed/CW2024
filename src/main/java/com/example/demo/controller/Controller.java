@@ -4,6 +4,7 @@ import java.util.Observer;
 
 import com.example.demo.ui.GameOver;
 import com.example.demo.ui.MainMenu;
+import com.example.demo.ui.Tutorial;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -58,10 +59,16 @@ public class Controller {
 		}
 	}
 
+	/*public void showTutorial() {
+		Tutorial tutorial =new Tutorial();
+		tutorial.show(stage);
+	}*/
+
 	public void showGameOver() {
 		GameOver gameOver = new GameOver(stage, this::launchGame);
 		gameOver.show();
 	}
+
 
 		private void showErrorAlert(Exception e) {
 			Alert alert=new Alert(AlertType.ERROR);

@@ -22,20 +22,26 @@ public class MainMenu {
 
         // Create Buttons
         Button startGameButton = new Button("Start Game");
+        Button tutorialButton=new Button("How to play!");
         //Button settingsButton = new Button("Settings");
         Button exitButton = new Button("Exit");
 
         // Add event handlers
         startGameButton.setOnAction(e -> onStartGame.run());
+        tutorialButton.setOnAction(e-> showTutorial());
         //settingsButton.setOnAction(e -> showSettings());
         exitButton.setOnAction(e -> stage.close());
 
         // Add buttons to layout
-        layout.getChildren().addAll(startGameButton, exitButton);
+        layout.getChildren().addAll(startGameButton, tutorialButton, exitButton);
 
         // Set the scene and display the stage
         Scene scene = new Scene(layout, 600, 400);
         stage.setScene(scene);
         stage.show();
+    }
+    public void showTutorial() {
+        Tutorial tutorial =new Tutorial();
+        tutorial.show(stage);
     }
 }
