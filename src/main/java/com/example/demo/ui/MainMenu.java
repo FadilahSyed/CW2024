@@ -1,29 +1,41 @@
-/*package com.example.demo.ui;
+package com.example.demo.ui;
 
-import javafx.application.Application;
+import com.example.demo.controller.Controller;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainMenu extends Application{
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Button startButton=new Button("Start");
-        Button quitButton= new Button("Quit");
+public class MainMenu {
+    private final Stage stage;  // Reference to the application's main stage
+    private final Runnable onStartGame;
 
-        startButton.setOnAction(event-> startGame(primaryStage));
-        quitButton.setOnAction(event->System.exit(0));
+    public MainMenu(Stage stage, Runnable onStartGame) {
+        this.stage = stage;
+        this.onStartGame = onStartGame;
+    }
 
-        VBox layout = new VBox(20);
-        layout.setStyle("-fx-alignment: center; -fx-padding: 20; -fx-spacing: 20; -fx-background-color: #2c3e50;");
-        startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #1abc9c; -fx-text-fill: white;");
-        quitButton.setStyle("-fx-font-size: 16px; -fx-background-color: #e74c3c; -fx-text-fill: white;");
+    public void show() {
+        // Create UI elements
+        VBox layout = new VBox(15); // Vertical box with 10px spacing
+        layout.setStyle("-fx-padding: 30; -fx-alignment: center; -fx-background-color: #f0f0f0;");
 
-        layout.getChildren().addAll(startButton,quitButton);
+        // Create Buttons
+        Button startGameButton = new Button("Start Game");
+        //Button settingsButton = new Button("Settings");
+        Button exitButton = new Button("Exit");
 
-        Scene scene = new Scene(layout,400,300);
-        primaryStage.set;
+        // Add event handlers
+        startGameButton.setOnAction(e -> onStartGame.run());
+        //settingsButton.setOnAction(e -> showSettings());
+        exitButton.setOnAction(e -> stage.close());
+
+        // Add buttons to layout
+        layout.getChildren().addAll(startGameButton, exitButton);
+
+        // Set the scene and display the stage
+        Scene scene = new Scene(layout, 600, 400);
+        stage.setScene(scene);
+        stage.show();
     }
 }
-*/

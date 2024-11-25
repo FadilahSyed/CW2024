@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.Observer;
 
+import com.example.demo.ui.MainMenu;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,11 +19,14 @@ public class Controller {
 	public Controller(Stage stage) {
 		this.stage = stage;
 	}
+	public void launchMainMenu(){
+		MainMenu mainMenu=new MainMenu(stage, this::launchGame);
+		mainMenu.show();
+	}
 
 	public void launchGame() {
-			stage.show();
-			loadAndStartLevel(LEVEL_ONE_CLASS_NAME);
-	}
+        	loadAndStartLevel(LEVEL_ONE_CLASS_NAME);
+    }
 
 	/*private void goToLevel(String className) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
