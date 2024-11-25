@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.Observer;
 
+import com.example.demo.ui.GameOver;
 import com.example.demo.ui.MainMenu;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -43,13 +44,23 @@ public class Controller {
 	public void loadAndStartLevel(String className) {
 		try {
 			LevelParent level = LevelLoader.loadLevel(className, stage.getHeight(), stage.getWidth());
-			level.addObserver((observable, arg) -> loadAndStartLevel((String) arg));
+			level.addObserver((observable, arg) ->
+			{if ("gameover".equals(arg)) {
+				showGameOver();
+			} else {
+				loadAndStartLevel((String) arg);
+			}});
 			Scene scene = level.initializeScene();
 			stage.setScene(scene);
 			level.startGame();
 		} catch (ReflectiveOperationException e) {
 			showErrorAlert(e);
 		}
+	}
+
+	public void showGameOver() {
+		GameOver gameOver = new GameOver(stage, this::launchGame);
+		gameOver.show();
 	}
 
 		private void showErrorAlert(Exception e) {

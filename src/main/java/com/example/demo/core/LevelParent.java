@@ -224,7 +224,9 @@ public abstract class LevelParent extends Observable {
 
 	protected void loseGame() {
 		timeline.stop();
-		levelView.showGameOverImage();
+		setChanged();
+		notifyObservers("gameover");
+		//levelView.showGameOverImage();
 	}
 
 	protected UserPlane getUser() {
@@ -259,6 +261,7 @@ public abstract class LevelParent extends Observable {
 	private void updateNumberOfEnemies() {
 		currentNumberOfEnemies = enemyUnits.size();
 	}
+
 
 }
 
