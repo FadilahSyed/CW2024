@@ -13,9 +13,10 @@ public class LevelLoader {
     }*/
     public static LevelParent loadLevel(String className,double height, double width) throws ReflectiveOperationException {
         Class<?> levelClass= Class.forName(className);
-        Constructor<?> constructor = levelClass.getConstructor(double.class, double.class);
+        return (LevelParent) levelClass.getConstructor(double.class, double.class).newInstance(height,width);
+        /*Constructor<?> constructor = levelClass.getConstructor(double.class, double.class);
         return (LevelParent) constructor.newInstance(height,width);
-    }
+    */}
 }
 
 /*public class LevelFactory {

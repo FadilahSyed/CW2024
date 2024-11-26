@@ -27,8 +27,8 @@ public class LevelThree extends LevelParent {
         if (userIsDestroyed()) {
             loseGame();
         }
-        else if (userHasReachedKillTarget())
-            goToNextLevel(NEXT_LEVEL);
+        else if (userHasReachedKillTarget()) {
+            goToNextLevel(NEXT_LEVEL);}
 
     }
 
