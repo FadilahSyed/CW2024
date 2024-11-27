@@ -1,13 +1,20 @@
 package com.example.demo.ui;
 
+import com.example.demo.utils.ImageLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameOver {
     private final Stage stage;
     private final Runnable onReplay;
+    //private final ImageView background;
+    private static final String GAMEOVER_BG = "background2.jpeg";
 
     public GameOver(Stage stage, Runnable onReplay) {
         this.stage=stage;
@@ -15,6 +22,7 @@ public class GameOver {
     }
 
     public void show() {
+        //ImageView background = new ImageView(ImageLoader.load(GAMEOVER_BG));
         VBox layout = new VBox(15);
         layout.setStyle("-fx-padding: 30; -fx-alignment: center; -fx-background-color: #000000;");
 

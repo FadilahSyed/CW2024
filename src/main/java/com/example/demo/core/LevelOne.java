@@ -8,7 +8,7 @@ import com.example.demo.ui.LevelView;
 public class LevelOne extends LevelParent {
 	
 	private static final String BACKGROUND_IMAGE_NAME = "background1.jpeg";
-	private static final String NEXT_LEVEL = "com.example.demo.core.LevelThree";
+	private static final String NEXT_LEVEL = "com.example.demo.core.LevelTwo";
 	private static final int TOTAL_ENEMIES = 5;
 	private static final int KILLS_TO_ADVANCE = 10;
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
@@ -25,8 +25,8 @@ public class LevelOne extends LevelParent {
 			System.out.println("userisdestroyed l1");
 			loseGame();
 		}
-		else if (userHasReachedKillTarget())
-			goToNextLevel(NEXT_LEVEL);
+		else if (userHasReachedKillTarget()) {
+			goToNextLevel(NEXT_LEVEL); }
 	}
 
 	@Override

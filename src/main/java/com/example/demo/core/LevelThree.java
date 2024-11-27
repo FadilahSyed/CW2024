@@ -28,8 +28,8 @@ public class LevelThree extends LevelParent {
             System.out.println("userisdestroyed l3");
             loseGame();
         }
-        else if (userHasReachedKillTarget())
-            goToNextLevel(NEXT_LEVEL);
+        else if (userHasReachedKillTarget()) {
+            goToNextLevel(NEXT_LEVEL);}
 
     }
 

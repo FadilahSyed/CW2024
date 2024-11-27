@@ -17,7 +17,7 @@ public class MainMenu {
 
     public void show() {
         // Create UI elements
-        VBox layout = new VBox(15); // Vertical box with 10px spacing
+        VBox layout = new VBox(20); // Vertical box with 10px spacing
         layout.setStyle("-fx-padding: 30; -fx-alignment: center; -fx-background-color: #f0f0f0;");
 
         // Create Buttons
