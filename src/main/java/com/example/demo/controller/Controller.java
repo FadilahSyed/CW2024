@@ -45,11 +45,13 @@ public class Controller {
 	public void loadAndStartLevel(String className) {
 		try {
 			LevelParent level = LevelLoader.loadLevel(className, stage.getHeight(), stage.getWidth());
-			level.addObserver((observable, arg) ->
-			{if ("gameover".equals(arg)) {
+			//level.addObserver((observable, arg) ->
+			level.setEventListener(event->
+			{if ("gameover".equals(event)) {
 				showGameOver();
+				System.out.println("controller observable");
 			} else {
-				loadAndStartLevel((String) arg);
+				loadAndStartLevel(event);
 			}});
 			Scene scene = level.initializeScene();
 			stage.setScene(scene);
@@ -67,6 +69,7 @@ public class Controller {
 	public void showGameOver() {
 		GameOver gameOver = new GameOver(stage, this::launchGame);
 		gameOver.show();
+		System.out.println("showgameover called");
 	}
 
 

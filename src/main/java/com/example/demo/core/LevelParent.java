@@ -16,7 +16,7 @@ import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.util.Duration;
 
-public abstract class LevelParent extends Observable {
+public abstract class LevelParent {
 	private boolean levelCompleted = false; //flag is true when the level is completed
 
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
@@ -37,6 +37,7 @@ public abstract class LevelParent extends Observable {
 	private final List<ActiveActorDestructible> enemyProjectiles;
 
 	private int currentNumberOfEnemies;
+	private LevelEventListener eventListener;
 	private LevelView levelView;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
@@ -74,6 +75,10 @@ public abstract class LevelParent extends Observable {
 		return scene;
 	}
 
+	public void setEventListener(LevelEventListener listener) {
+		this.eventListener=listener;
+	}
+
 	public void startGame() {
 		levelCompleted=false; //levelCompleted flag reset when level starts
 		background.requestFocus();
@@ -81,14 +86,15 @@ public abstract class LevelParent extends Observable {
 	}
 
 	public void goToNextLevel(String levelName) {
-		if (levelCompleted) {
-			return; //ensures method is called once only
-		}
-		setChanged();
-		notifyObservers(levelName);
-		levelCompleted=true; //sets flag to prevent repetition
+		timeline.stop();
+		if(levelCompleted) {return;}
+		System.out.println("Transitioning to next level: " + levelName);
+		/*if (eventListener != null) {
+			eventListener.onLevelEvent(levelName);
+		}*/
+		eventListener.onLevelEvent(levelName);
+		levelCompleted=true;
 	}
-
 	private void updateScene() {
 		spawnEnemyUnits();
 		updateActors();
@@ -223,9 +229,13 @@ public abstract class LevelParent extends Observable {
 	}
 
 	protected void loseGame() {
+		System.out.println("LosegameLP called");
 		timeline.stop();
-		setChanged();
-		notifyObservers("gameover");
+		if(eventListener!=null) {
+			eventListener.onLevelEvent("gameover");
+		}
+		//setChanged();
+		//notifyObservers("gameover");
 		//levelView.showGameOverImage();
 	}
 

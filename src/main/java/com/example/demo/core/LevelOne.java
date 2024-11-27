@@ -20,7 +20,9 @@ public class LevelOne extends LevelParent {
 
 	@Override
 	protected void checkIfGameOver() {
-		if (userIsDestroyed()) {
+		//if (userIsDestroyed()) {
+		if (getUser().isDestroyed()) {
+			System.out.println("userisdestroyed l1");
 			loseGame();
 		}
 		else if (userHasReachedKillTarget())
