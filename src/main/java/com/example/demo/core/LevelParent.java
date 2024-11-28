@@ -227,7 +227,9 @@ public abstract class LevelParent {
 
 	protected void winGame() {
 		timeline.stop();
-		levelView.showWinImage();
+		if(eventListener!=null) {
+			eventListener.onLevelEvent("wingame");
+		}
 	}
 
 	protected void loseGame() {

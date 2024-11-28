@@ -5,6 +5,7 @@ import java.util.Observer;
 import com.example.demo.ui.GameOver;
 import com.example.demo.ui.MainMenu;
 import com.example.demo.ui.Tutorial;
+import com.example.demo.ui.WinGame;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -50,7 +51,10 @@ public class Controller {
 			{if ("gameover".equals(event)) {
 				showGameOver();
 				System.out.println("controller observable");
-			} else {
+			} else if ("wingame".equals(event)) {
+				showWinGame();
+				System.out.println("controller observable");}
+				else {
 				loadAndStartLevel(event);
 			}});
 			Scene scene = level.initializeScene();
@@ -70,6 +74,10 @@ public class Controller {
 		GameOver gameOver = new GameOver(stage, this::launchGame);
 		gameOver.show();
 		System.out.println("showgameover called");
+	}
+	public void showWinGame() {
+		WinGame winGame = new WinGame(stage, this::launchGame);
+		winGame.show();
 	}
 
 
