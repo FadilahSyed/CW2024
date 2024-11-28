@@ -5,7 +5,7 @@ import com.example.demo.projectiles.movement.ZigZagMovement;
 
 public class Enemy2Projectile extends Projectile {
     private static final String IMAGE_NAME = "enemyFire.png";
-    private static final int IMAGE_HEIGHT = 15; //reduced the hitbox of normal enemy's projectile
+    private static final int IMAGE_HEIGHT = 25; //reduced the hitbox of normal enemy's projectile
     //private static final int HORIZONTAL_VELOCITY = -12;
     private final ProjectileMovementStrategy movementStrategy;
 
