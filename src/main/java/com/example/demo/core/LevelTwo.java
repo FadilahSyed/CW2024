@@ -1,49 +1,57 @@
 package com.example.demo.core;
 
-import com.example.demo.actors.Boss;
+import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.Enemy2Plane;
 import com.example.demo.ui.LevelView;
-import com.example.demo.ui.LevelViewLevelTwo;
 
 public class LevelTwo extends LevelParent {
+    private static final String BACKGROUND_IMAGE_NAME = "background2.jpeg";
+    private static final String NEXT_LEVEL = "com.example.demo.core.LevelFinal";
+    private static final int TOTAL_ENEMIES = 3;
+    private static final int KILLS_TO_ADVANCE = 6;
+    private static final double ENEMY_SPAWN_PROBABILITY = .2;
+    private static final int PLAYER_INITIAL_HEALTH = 5;
 
-	private static final String BACKGROUND_IMAGE_NAME = "background3.jpeg";
-	private static final int PLAYER_INITIAL_HEALTH = 5;
-	private final Boss boss;
-	private LevelViewLevelTwo levelView;
-	//private MovementPattern movementPattern;
-	//private ShieldManager shieldManager;
+    public LevelTwo(double screenHeight, double screenWidth) {
+        super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+    }
 
-	public LevelTwo(double screenHeight, double screenWidth) {
-		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
-		boss = new Boss(levelView);
-	}
+    @Override
+    protected void initializeFriendlyUnits() {
+        getRoot().getChildren().add(getUser());
+    }
 
-	@Override
-	protected void initializeFriendlyUnits() {
-		getRoot().getChildren().add(getUser());
-	}
 
-	@Override
-	protected void checkIfGameOver() {
-		if (userIsDestroyed()) {
-			loseGame();
-		}
-		else if (boss.isDestroyed()) {
-			winGame();
-		}
-	}
+    @Override
+    protected void checkIfGameOver() {
+        if (userIsDestroyed()) {
+            System.out.println("userisdestroyed l3");
+            loseGame();
+        }
+        else if (userHasReachedKillTarget()) {
+            goToNextLevel(NEXT_LEVEL);}
 
-	@Override
-	protected void spawnEnemyUnits() {
-		if (getCurrentNumberOfEnemies() == 0) {
-			addEnemyUnit(boss);
-		}
-	}
+    }
 
-	@Override
-	protected LevelView instantiateLevelView() {
-		levelView = new LevelViewLevelTwo(getRoot(), PLAYER_INITIAL_HEALTH);
-		return levelView;
-	}
+    @Override
+    protected void spawnEnemyUnits() {
+        int currentNumberOfEnemies = getCurrentNumberOfEnemies();
+        for (int i = 0; i < TOTAL_ENEMIES - currentNumberOfEnemies; i++) {
+            if (Math.random() < ENEMY_SPAWN_PROBABILITY) {
+                double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
+                ActiveActorDestructible newEnemy = new Enemy2Plane();
+                addEnemyUnit(newEnemy);
+            }
+        }
+    }
+
+    @Override
+    protected LevelView instantiateLevelView() {
+        return new LevelView(getRoot(),PLAYER_INITIAL_HEALTH);
+    }
+
+    private boolean userHasReachedKillTarget() {
+        return getUser().getNumberOfKills() >= KILLS_TO_ADVANCE;
+    }
 
 }

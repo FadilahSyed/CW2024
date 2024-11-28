@@ -8,6 +8,8 @@ public class ProjectileFactory {
                 return new BossProjectile(y);
             case "enemy":
                 return new EnemyProjectile(x, y);
+            case "enemy2":
+                return new Enemy2Projectile(x, y);
             case "user":
                 return new UserProjectile(x,y);
             default:

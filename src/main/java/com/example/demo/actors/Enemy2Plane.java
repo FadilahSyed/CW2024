@@ -3,6 +3,7 @@ package com.example.demo.actors;
 import com.example.demo.actors.movement.MovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.projectiles.Enemy2Projectile;
+import com.example.demo.projectiles.ProjectileFactory;
 
 public class Enemy2Plane extends FighterPlane {
 
@@ -37,9 +38,9 @@ public class Enemy2Plane extends FighterPlane {
     @Override
     public ActiveActorDestructible fireProjectile() {
         if (Math.random() < FIRE_RATE) {
-            double projectileXPosition = getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET);
-            double projectileYPosition = getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET);
-            return new Enemy2Projectile(projectileXPosition, projectileYPosition);
+            return ProjectileFactory.createProjectile("enemy2",
+                    getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET),
+                    getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
         }
         return null;
     }
