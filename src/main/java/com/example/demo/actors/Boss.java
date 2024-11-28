@@ -17,7 +17,7 @@ public class Boss extends FighterPlane {
 	private static final double BOSS_FIRE_RATE = .04;
 	private static final int IMAGE_HEIGHT = 59;
 	private static final int HEALTH = 50;
-	private static final int Y_POSITION_UPPER_BOUND = -100;
+	private static final int Y_POSITION_UPPER_BOUND = 100;
 	private static final int Y_POSITION_LOWER_BOUND = 475;
 
 	private final MovementStrategy movementStrategy;
@@ -39,6 +39,10 @@ public class Boss extends FighterPlane {
 		if (currentPosition < Y_POSITION_UPPER_BOUND || currentPosition > Y_POSITION_LOWER_BOUND) {
 			setTranslateY(initialTranslateY);
 		}
+		shieldStrategy.updateShieldPosition(getLayoutX(), getLayoutY()+getTranslateY());
+
+
+
 	}
 
 	@Override
