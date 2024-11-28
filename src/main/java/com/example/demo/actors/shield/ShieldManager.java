@@ -3,8 +3,8 @@ package com.example.demo.actors.shield;
 import com.example.demo.ui.LevelViewLevelTwo;
 
 public class ShieldManager implements ShieldStrategy{
-    private static final double SHIELD_PROBABILITY = .002;
-    private static final int MAX_FRAMES_WITH_SHIELD = 500;
+    private static final double SHIELD_PROBABILITY = .2;
+    private static final int MAX_FRAMES_WITH_SHIELD = 250;
     private final LevelViewLevelTwo levelView;
     private boolean isShielded;
     private int activeShieldFrames;
@@ -45,4 +45,9 @@ public class ShieldManager implements ShieldStrategy{
         activeShieldFrames = 0;
         levelView.hideShield(); //calls method from levelviewlevel2
     }
+
+    public void updateShieldPosition(double x, double y) {
+        levelView.updateShieldPosition(x, y);
+    }
+
 }
