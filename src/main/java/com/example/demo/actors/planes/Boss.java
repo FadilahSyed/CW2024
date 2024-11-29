@@ -1,7 +1,9 @@
-package com.example.demo.actors;
+package com.example.demo.actors.planes;
 
+import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.movement.MovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
+import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.actors.shield.ShieldManager;
 import com.example.demo.actors.shield.ShieldStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
@@ -40,9 +42,6 @@ public class Boss extends FighterPlane {
 			setTranslateY(initialTranslateY);
 		}
 		shieldStrategy.updateShieldPosition(getLayoutX(), getLayoutY()+getTranslateY());
-
-
-
 	}
 
 	@Override
@@ -69,60 +68,3 @@ public class Boss extends FighterPlane {
 		return getLayoutY() + getTranslateY() + PROJECTILE_Y_POSITION_OFFSET;
 	}
 }
-	//private methods
-	/*private void initializeMovePattern() {
-		for (int i = 0; i < MOVE_FREQUENCY_PER_CYCLE; i++) {
-			movePattern.add(VERTICAL_VELOCITY);
-			movePattern.add(-VERTICAL_VELOCITY);
-			movePattern.add(ZERO);
-		}
-		Collections.shuffle(movePattern);
-	}*/
-
-	/*private void updateShield() {
-		if (isShielded) framesWithShieldActivated++;
-		else if (shieldShouldBeActivated()) {
-			activateShield();
-		}
-		if (shieldExhausted()) deactivateShield();
-	}*/
-
-	/*private int getNextMove() {
-		int currentMove = movePattern.get(indexOfCurrentMove);
-		consecutiveMovesInSameDirection++;
-		if (consecutiveMovesInSameDirection == MAX_FRAMES_WITH_SAME_MOVE) {
-			Collections.shuffle(movePattern);
-			consecutiveMovesInSameDirection = 0;
-			indexOfCurrentMove++;
-		}
-		if (indexOfCurrentMove == movePattern.size()) {
-			indexOfCurrentMove = 0;
-		}
-		return currentMove;
-	}*/
-
-	/*private boolean bossFiresInCurrentFrame() {
-		return Math.random() < BOSS_FIRE_RATE;
-	}*/
-
-
-	/*private boolean shieldShouldBeActivated() {
-		return Math.random() < BOSS_SHIELD_PROBABILITY;
-	}
-
-	private boolean shieldExhausted() {
-		return framesWithShieldActivated == MAX_FRAMES_WITH_SHIELD;
-	}
-
-	private void activateShield() {
-		isShielded = true;
-		levelView.showShield(); //calls method from levelviewlevel2
-	}
-
-	private void deactivateShield() {
-		isShielded = false;
-		framesWithShieldActivated = 0;
-		levelView.hideShield(); //calls method from levelviewlevel2
-	}*/
-
-

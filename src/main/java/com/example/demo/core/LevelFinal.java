@@ -1,6 +1,6 @@
 package com.example.demo.core;
 
-import com.example.demo.actors.Boss;
+import com.example.demo.actors.planes.Boss;
 import com.example.demo.ui.LevelView;
 import com.example.demo.ui.LevelViewLevelTwo;
 

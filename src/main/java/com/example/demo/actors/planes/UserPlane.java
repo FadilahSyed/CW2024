@@ -1,7 +1,8 @@
-package com.example.demo.actors;
+package com.example.demo.actors.planes;
 
+import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.projectiles.ProjectileFactory;
-import com.example.demo.projectiles.UserProjectile;
 
 public class UserPlane extends FighterPlane {
 
@@ -51,14 +52,7 @@ public class UserPlane extends FighterPlane {
 				this.setTranslateY(initialTranslateX);
 			}
 		}
-		/*if (isMoving()) {
-			double initialTranslateY = getTranslateY();
-			this.moveVertically(VERTICAL_VELOCITY * velocityMultiplier);
-			double newPosition = getLayoutY() + getTranslateY();
-			if (newPosition < Y_UPPER_BOUND || newPosition > Y_LOWER_BOUND) {
-				this.setTranslateY(initialTranslateY);
-			}
-		}*/
+
 	}
 	
 	@Override

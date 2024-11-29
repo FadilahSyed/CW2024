@@ -1,7 +1,7 @@
 package com.example.demo.core;
 
 import com.example.demo.actors.ActiveActorDestructible;
-import com.example.demo.actors.Enemy2Plane;
+import com.example.demo.actors.planes.Enemy2Plane;
 import com.example.demo.ui.LevelView;
 
 public class LevelTwo extends LevelParent {

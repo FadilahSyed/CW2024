@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
-import java.util.Observer;
-
 import com.example.demo.ui.GameOver;
 import com.example.demo.ui.MainMenu;
-import com.example.demo.ui.Tutorial;
 import com.example.demo.ui.WinGame;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -22,41 +19,29 @@ public class Controller {
 	public Controller(Stage stage) {
 		this.stage = stage;
 	}
-	public void launchMainMenu(){
-		MainMenu mainMenu=new MainMenu(stage, this::launchGame);
+
+	public void launchMainMenu() {
+		MainMenu mainMenu = new MainMenu(stage, this::launchGame);
 		mainMenu.show();
 	}
 
 	public void launchGame() {
-        	loadAndStartLevel(LEVEL_ONE_CLASS_NAME);
-    }
-
-	/*private void goToLevel(String className) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-			Class<?> myClass = Class.forName(className);
-			Constructor<?> constructor = myClass.getConstructor(double.class, double.class);
-			LevelParent myLevel = (LevelParent) constructor.newInstance(stage.getHeight(), stage.getWidth());
-			myLevel.addObserver(this);
-			Scene scene = myLevel.initializeScene();
-			stage.setScene(scene);
-			myLevel.startGame();
-
-	}*/
+		loadAndStartLevel(LEVEL_ONE_CLASS_NAME);
+	}
 
 	public void loadAndStartLevel(String className) {
 		try {
 			LevelParent level = LevelLoader.loadLevel(className, stage.getHeight(), stage.getWidth());
-			//level.addObserver((observable, arg) ->
-			level.setEventListener(event->
-			{if ("gameover".equals(event)) {
-				showGameOver();
-				System.out.println("controller observable");
-			} else if ("wingame".equals(event)) {
-				showWinGame();
-				System.out.println("controller observable");}
-				else {
-				loadAndStartLevel(event);
-			}});
+			level.setEventListener(event ->
+			{
+				if ("gameover".equals(event)) {
+					showGameOver();
+				} else if ("wingame".equals(event)) {
+					showWinGame();
+				} else {
+					loadAndStartLevel(event);
+				}
+			});
 			Scene scene = level.initializeScene();
 			stage.setScene(scene);
 			level.startGame();
@@ -65,36 +50,24 @@ public class Controller {
 		}
 	}
 
-	/*public void showTutorial() {
-		Tutorial tutorial =new Tutorial();
-		tutorial.show(stage);
-	}*/
 
 	public void showGameOver() {
 		GameOver gameOver = new GameOver(stage, this::launchGame);
 		gameOver.show();
-		System.out.println("showgameover called");
 	}
+
 	public void showWinGame() {
 		WinGame winGame = new WinGame(stage, this::launchGame);
 		winGame.show();
 	}
 
 
-		private void showErrorAlert(Exception e) {
-			Alert alert=new Alert(AlertType.ERROR);
-			alert.setTitle("Error Loading Level");
-			alert.setHeaderText("An error occurred: ");
-			alert.setContentText(e.getMessage());
-			alert.show();
-			e.printStackTrace();
-		/*(ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setContentText(e.getClass().toString());
-			alert.show();
-			e.printStackTrace();*/
-		}
+	private void showErrorAlert(Exception e) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error Loading Level");
+		alert.setHeaderText("An error occurred: ");
+		alert.setContentText(e.getMessage());
+		alert.show();
+		e.printStackTrace();
 	}
-
-
+}
