@@ -5,13 +5,12 @@ import com.example.demo.actors.movement.MovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
 
-public class Enemy2Plane extends FighterPlane {
+public class MiniBoss extends FighterPlane {
 
 
     private static final String IMAGE_NAME = "enemyplane.png";
     private static final int IMAGE_HEIGHT = 65;
     private static final double INITIAL_X_POSITION = 1000.0;
-    private static final double INITIAL_Y_POSITION = 400;
     private static final double PROJECTILE_X_POSITION_OFFSET = -100.0;
     private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
     private static final int INITIAL_HEALTH = 10;
@@ -20,8 +19,8 @@ public class Enemy2Plane extends FighterPlane {
     private static final int Y_POSITION_LOWER_BOUND = 600;
 
     private final MovementStrategy movementStrategy;
-    public Enemy2Plane() {
-        super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, INITIAL_HEALTH);
+    public MiniBoss(double initialYPos) {
+        super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, initialYPos, INITIAL_HEALTH);
         this.movementStrategy=new MovementPattern();
     }
 
@@ -38,7 +37,7 @@ public class Enemy2Plane extends FighterPlane {
     @Override
     public ActiveActorDestructible fireProjectile() {
         if (Math.random() < FIRE_RATE) {
-            return ProjectileFactory.createProjectile("enemy2",
+            return ProjectileFactory.createProjectile("miniboss",
                     getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET),
                     getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
         }
