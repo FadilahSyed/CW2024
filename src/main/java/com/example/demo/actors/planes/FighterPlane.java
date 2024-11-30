@@ -5,6 +5,9 @@ import com.example.demo.actors.ActiveActorDestructible;
 public abstract class FighterPlane extends ActiveActorDestructible {
 
 	private int health;
+	private static final int Y_POSITION_UPPER_BOUND = 100;
+	private static final int Y_POSITION_LOWER_BOUND = 475;
+
 
 	//constructors
 	public FighterPlane(String imageName, int imageHeight, double initialXPos, double initialYPos, int health) {
@@ -39,5 +42,9 @@ public abstract class FighterPlane extends ActiveActorDestructible {
 	}
 	private boolean healthAtZero() {
 		return health == 0;
+	}
+
+	protected boolean isWithinBounds(double currentPosition) {
+		return currentPosition<Y_POSITION_UPPER_BOUND || currentPosition>Y_POSITION_LOWER_BOUND;
 	}
 }

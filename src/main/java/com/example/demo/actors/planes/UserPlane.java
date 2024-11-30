@@ -49,7 +49,7 @@ public class UserPlane extends FighterPlane {
 			this.moveHorizontally(VELOCITY*horizontalVelocityMultiplier);
 			double newXPosition=getLayoutX()+getTranslateX();
 			if(newXPosition<X_LEFT_BOUND || newXPosition>X_RIGHT_BOUND) {
-				this.setTranslateY(initialTranslateX);
+				this.setTranslateX(initialTranslateX);
 			}
 		}
 

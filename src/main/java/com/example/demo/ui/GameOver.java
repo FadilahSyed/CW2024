@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class GameOver extends BaseMenu{
     private static final String BACKGROUND_IMAGE_NAME = "gameOverBackground.jpeg";
-    private static final String GAMEOVER_IMAGE = "gameOverLabelImage.png";
+    private static final String GAMEOVER_IMAGE = "gameover.png";
     private static final String REPLAY_IMAGE = "replayButtonImage.png";
     private static final String EXIT_IMAGE = "exitButtonImage.png";
 

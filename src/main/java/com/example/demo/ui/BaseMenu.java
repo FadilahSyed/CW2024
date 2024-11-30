@@ -15,7 +15,7 @@ public abstract class BaseMenu {
     protected static final int BUTTON_WIDTH=250;
     protected static final int TITLE_HEIGHT=150;
     protected static final int TITLE_WIDTH =600;
-    protected static final int SCREEN_WIDTH =1300;
+    protected static final int SCREEN_WIDTH=1300;
     protected static final int SCREEN_HEIGHT =750;
 
     protected final Stage stage;
@@ -31,13 +31,16 @@ public abstract class BaseMenu {
 
         // Set up the background
         ImageView background = new ImageView(ImageLoader.load(backgroundImageName));
-        background.setFitHeight(SCREEN_HEIGHT);
-        background.setFitWidth(SCREEN_WIDTH);
+        background.setFitHeight(stage.getHeight());
+        background.setFitWidth(stage.getWidth());
         root.getChildren().add(background);
 
         // Set up the layout
         VBox layout = new VBox(20);
         layout.setAlignment(Pos.CENTER);
+
+        background.fitWidthProperty().bind(root.widthProperty());
+        background.fitHeightProperty().bind(root.heightProperty());
 
         // Add the title
         if (titleImagePath != null) {
@@ -47,14 +50,29 @@ public abstract class BaseMenu {
             layout.getChildren().add(title);
         }
 
-        // Add the buttons
         layout.getChildren().addAll(buttons);
+
 
         root.getChildren().add(layout);
 
+        //layout.layoutXProperty().bind(root.widthProperty().subtract(layout.widthProperty()).divide(2));
+        //layout.layoutYProperty().bind(root.heightProperty().subtract(layout.heightProperty()).divide(2));
+
+
+
+        Scene currentScene=stage.getScene();
+        if(currentScene!=null) {
+            currentScene.setRoot(root);
+            System.out.println("CurrentScene");
+        } else {
+            Scene newScene=new Scene(root,SCREEN_WIDTH,SCREEN_HEIGHT);
+            stage.setScene(newScene);
+        }
+
         // Set the scene
-        Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
-        stage.setScene(scene);
+
+        //Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
+        //stage.setScene(scene);
         stage.show();
     }
 

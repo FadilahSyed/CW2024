@@ -14,8 +14,6 @@ public class Enemy3Plane extends FighterPlane {
     private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
     private static final int INITIAL_HEALTH = 1;
     private static final double FIRE_RATE = .01;
-    private static final int Y_POSITION_UPPER_BOUND = 100;
-    private static final int Y_POSITION_LOWER_BOUND = 475;
 
     private final MovementStrategy movementStrategy;
 
@@ -30,7 +28,7 @@ public class Enemy3Plane extends FighterPlane {
         double initialTranslateY = getTranslateY();
         moveVertically(movementStrategy.getNextMove());
         double currentPosition = getLayoutY() + getTranslateY();
-        if (currentPosition < Y_POSITION_UPPER_BOUND || currentPosition > Y_POSITION_LOWER_BOUND) {
+        if (isWithinBounds(currentPosition)) {
             setTranslateY(initialTranslateY);
         }
     }
