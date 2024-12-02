@@ -85,14 +85,10 @@ public abstract class LevelParent {
 	}
 
 	public void goToNextLevel(String levelName) {
-		timeline.stop();
-		if(levelCompleted) {return;}
-		System.out.println("Transitioning to next level: " + levelName);
-		/*if (eventListener != null) {
+		if (!levelCompleted && eventListener != null) {
+			timeline.stop();
 			eventListener.onLevelEvent(levelName);
-		}*/
-		eventListener.onLevelEvent(levelName);
-		levelCompleted=true;
+			levelCompleted = true;}
 	}
 	private void updateScene() {
 		spawnEnemyUnits();
