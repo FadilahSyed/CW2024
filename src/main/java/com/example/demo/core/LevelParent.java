@@ -99,10 +99,7 @@ public abstract class LevelParent {
 		updateActors();
 		generateEnemyFire();
 		updateNumberOfEnemies();
-		handleEnemyPenetration();
-		handleUserProjectileCollisions();
-		handleEnemyProjectileCollisions();
-		handlePlaneCollisions();
+		handleCollisionsAndDamage();
 		removeAllDestroyedActors();
 		updateKillCount();
 		updateLevelView();
@@ -158,10 +155,10 @@ public abstract class LevelParent {
 	}
 
 	private void updateActors() {
-		friendlyUnits.forEach(plane -> plane.updateActor());
-		enemyUnits.forEach(enemy -> enemy.updateActor());
-		userProjectiles.forEach(projectile -> projectile.updateActor());
-		enemyProjectiles.forEach(projectile -> projectile.updateActor());
+		friendlyUnits.forEach(ActiveActorDestructible::updateActor);
+		enemyUnits.forEach(ActiveActorDestructible::updateActor);
+		userProjectiles.forEach(ActiveActorDestructible::updateActor);
+		enemyProjectiles.forEach(ActiveActorDestructible::updateActor);
 	}
 
 	private void removeAllDestroyedActors() {
@@ -171,23 +168,30 @@ public abstract class LevelParent {
 		removeDestroyedActors(enemyProjectiles);
 	}
 
-	private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
+	/*private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
 		List<ActiveActorDestructible> destroyedActors = actors.stream().filter(actor -> actor.isDestroyed())
 				.collect(Collectors.toList());
 		root.getChildren().removeAll(destroyedActors);
 		actors.removeAll(destroyedActors);
 	}
 
-	private void handlePlaneCollisions() {
-		handleCollisions(friendlyUnits, enemyUnits);
+	 */
+	private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
+		actors.removeIf(actor -> {
+			if (actor.isDestroyed()) {
+				root.getChildren().remove(actor);
+				return true;
+			}
+			return false;
+		});
 	}
 
-	private void handleUserProjectileCollisions() {
+
+	private void handleCollisionsAndDamage() {
+		handleEnemyPenetration();
 		handleCollisions(userProjectiles, enemyUnits);
-	}
-
-	private void handleEnemyProjectileCollisions() {
 		handleCollisions(enemyProjectiles, friendlyUnits);
+		handleCollisions(friendlyUnits, enemyUnits);
 	}
 
 	private void handleCollisions(List<ActiveActorDestructible> actors1,

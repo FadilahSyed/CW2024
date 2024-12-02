@@ -1,6 +1,7 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.projectiles.ProjectileFactory;
 
 public abstract class FighterPlane extends ActiveActorDestructible {
 
@@ -45,6 +46,7 @@ public abstract class FighterPlane extends ActiveActorDestructible {
 	}
 
 	protected boolean isWithinBounds(double currentPosition) {
-		return currentPosition<Y_POSITION_UPPER_BOUND || currentPosition>Y_POSITION_LOWER_BOUND;
+		return (currentPosition<Y_POSITION_UPPER_BOUND || currentPosition>Y_POSITION_LOWER_BOUND);
 	}
+
 }
