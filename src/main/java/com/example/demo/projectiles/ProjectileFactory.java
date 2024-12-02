@@ -10,8 +10,10 @@ public class ProjectileFactory {
                 return new EnemyProjectile(x, y);
             case "miniboss":
                 return new MiniBossProjectile(x, y);
-            case "user":
+            case "user": {
+                System.out.println("firefire");
                 return new UserProjectile(x,y);
+            }
             default:
                 throw new IllegalArgumentException("Unknown projectile type: " + type);
         }

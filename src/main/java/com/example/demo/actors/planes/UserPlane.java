@@ -62,6 +62,7 @@ public class UserPlane extends FighterPlane {
 	
 	@Override
 	public ActiveActorDestructible fireProjectile() {
+		System.out.println("fire projectile");
 		return ProjectileFactory.createProjectile("user",getProjectileXPosition(PROJECTILE_X_POSITION),getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 

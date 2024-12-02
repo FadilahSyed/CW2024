@@ -35,6 +35,9 @@ public abstract class LevelParent {
 	private final List<ActiveActorDestructible> userProjectiles;
 	private final List<ActiveActorDestructible> enemyProjectiles;
 
+	private final ActorManager actorManager;
+	private final BackgroundHandler backgroundHandler;
+	private final CollisionHandler collisionHandler;
 	private int currentNumberOfEnemies;
 	private LevelEventListener eventListener;
 	private LevelView levelView;
@@ -43,6 +46,7 @@ public abstract class LevelParent {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		this.timeline = new Timeline();
+
 		this.user = new UserPlane(playerInitialHealth);
 		this.friendlyUnits = new ArrayList<>();
 		this.enemyUnits = new ArrayList<>();
@@ -53,8 +57,14 @@ public abstract class LevelParent {
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
+
+		this.actorManager=new ActorManager(root);
+		this.backgroundHandler=new BackgroundHandler(background,user,this);
+		this.collisionHandler=new CollisionHandler();
+
 		this.levelView = instantiateLevelView();
 		this.currentNumberOfEnemies = 0;
+
 		initializeTimeline();
 		friendlyUnits.add(user);
 	}
@@ -68,7 +78,7 @@ public abstract class LevelParent {
 	protected abstract LevelView instantiateLevelView();
 
 	public Scene initializeScene() {
-		initializeBackground();
+		backgroundHandler.initializeBackground(root,screenWidth,screenHeight);
 		initializeFriendlyUnits();
 		levelView.showHeartDisplay();
 		return scene;
@@ -108,7 +118,7 @@ public abstract class LevelParent {
 		timeline.getKeyFrames().add(gameLoop);
 	}
 
-
+	/*
 	private void initializeBackground() {
 		background.setFocusTraversable(true);
 		background.setFitHeight(screenHeight);
@@ -131,9 +141,10 @@ public abstract class LevelParent {
 			}
 		});
 		root.getChildren().add(background);
-	}
+	}*/
 
-	private void fireProjectile() {
+
+	protected void fireProjectile() {
 		ActiveActorDestructible projectile = user.fireProjectile();
 		root.getChildren().add(projectile);
 		userProjectiles.add(projectile);
@@ -158,10 +169,10 @@ public abstract class LevelParent {
 	}
 
 	private void removeAllDestroyedActors() {
-		removeDestroyedActors(friendlyUnits);
-		removeDestroyedActors(enemyUnits);
-		removeDestroyedActors(userProjectiles);
-		removeDestroyedActors(enemyProjectiles);
+		actorManager.removeDestroyedActors(friendlyUnits);
+		actorManager.removeDestroyedActors(enemyUnits);
+		actorManager.removeDestroyedActors(userProjectiles);
+		actorManager.removeDestroyedActors(enemyProjectiles);
 	}
 
 	/*private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
@@ -172,6 +183,7 @@ public abstract class LevelParent {
 	}
 
 	 */
+	/*
 	private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
 		actors.removeIf(actor -> {
 			if (actor.isDestroyed()) {
@@ -180,17 +192,17 @@ public abstract class LevelParent {
 			}
 			return false;
 		});
-	}
+	}*/
 
 
 	private void handleCollisionsAndDamage() {
 		handleEnemyPenetration();
-		handleCollisions(userProjectiles, enemyUnits);
-		handleCollisions(enemyProjectiles, friendlyUnits);
-		handleCollisions(friendlyUnits, enemyUnits);
+		collisionHandler.handleCollisions(userProjectiles, enemyUnits);
+		collisionHandler.handleCollisions(enemyProjectiles, friendlyUnits);
+		collisionHandler.handleCollisions(friendlyUnits, enemyUnits);
 	}
 
-	private void handleCollisions(List<ActiveActorDestructible> actors1,
+	/*private void handleCollisions(List<ActiveActorDestructible> actors1,
 								  List<ActiveActorDestructible> actors2) {
 		for (ActiveActorDestructible actor : actors2) {
 			for (ActiveActorDestructible otherActor : actors1) {
@@ -200,11 +212,11 @@ public abstract class LevelParent {
 				}
 			}
 		}
-	}
+	}*/
 
 	private void handleEnemyPenetration() {
 		for (ActiveActorDestructible enemy : enemyUnits) {
-			if (enemyHasPenetratedDefenses(enemy)) {
+			if (collisionHandler.enemyHasPenetratedDefenses(enemy, screenWidth)) {
 				user.takeDamage();
 				enemy.destroy();
 			}
@@ -221,9 +233,10 @@ public abstract class LevelParent {
 		}
 	}
 
+	/*
 	private boolean enemyHasPenetratedDefenses(ActiveActorDestructible enemy) {
 		return Math.abs(enemy.getTranslateX()) > screenWidth;
-	}
+	}*/
 
 	protected void winGame() {
 		timeline.stop();
