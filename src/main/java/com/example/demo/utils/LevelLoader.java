@@ -1,10 +1,6 @@
 package com.example.demo.utils;
 
-import com.example.demo.core.LevelParent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.lang.reflect.Constructor;
+import com.example.demo.core.Management.LevelParent;
 
 public class LevelLoader {
     public static LevelParent loadLevel(String className,double height, double width) throws ReflectiveOperationException {

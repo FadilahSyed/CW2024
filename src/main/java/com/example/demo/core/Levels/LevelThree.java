@@ -1,12 +1,13 @@
-package com.example.demo.core;
+package com.example.demo.core.Levels;
 
 import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.planes.MiniBoss;
+import com.example.demo.core.Management.LevelParent;
 import com.example.demo.ui.LevelView;
 
 public class LevelThree extends LevelParent {
     private static final String BACKGROUND_IMAGE_NAME = "background2.jpeg";
-    private static final String NEXT_LEVEL = "com.example.demo.core.LevelFour";
+    private static final String NEXT_LEVEL = "com.example.demo.core.Levels.LevelFour";
     private static final int TOTAL_ENEMIES = 3;
     private static final int KILLS_TO_ADVANCE = 3;
     private static final int PLAYER_INITIAL_HEALTH = 5;

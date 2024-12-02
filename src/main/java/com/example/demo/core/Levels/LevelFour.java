@@ -1,14 +1,15 @@
-package com.example.demo.core;
+package com.example.demo.core.Levels;
 
 import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.planes.Enemy3Plane;
 import com.example.demo.actors.planes.EnemyPlane;
+import com.example.demo.core.Management.LevelParent;
 import com.example.demo.ui.LevelView;
 
 public class LevelFour extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "background2.jpeg";
-    private static final String NEXT_LEVEL = "com.example.demo.core.LevelFinal";
+    private static final String NEXT_LEVEL = "com.example.demo.core.Levels.LevelFinal";
     private static final int TOTAL_ENEMIES = 7;
     private static final int KILLS_TO_ADVANCE = 15;
     private static final double ENEMY_SPAWN_PROBABILITY = .2;

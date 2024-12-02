@@ -1,6 +1,5 @@
-package com.example.demo.core;
+package com.example.demo.core.Management;
 
-import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.planes.UserPlane;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;

@@ -1,6 +1,5 @@
-package com.example.demo.core;
+package com.example.demo.core.Management;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.planes.FighterPlane;
@@ -8,11 +7,9 @@ import com.example.demo.ui.LevelView;
 import com.example.demo.actors.planes.UserPlane;
 import com.example.demo.utils.ImageLoader;
 import javafx.animation.*;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
-import javafx.scene.input.*;
 import javafx.util.Duration;
 
 public abstract class LevelParent {
