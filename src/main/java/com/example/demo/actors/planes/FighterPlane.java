@@ -46,7 +46,8 @@ public abstract class FighterPlane extends ActiveActorDestructible {
 	}
 
 	protected boolean isWithinBounds(double currentPosition) {
-		return (currentPosition<Y_POSITION_UPPER_BOUND || currentPosition>Y_POSITION_LOWER_BOUND);
+		return currentPosition >= Y_POSITION_UPPER_BOUND && currentPosition <= Y_POSITION_LOWER_BOUND;
 	}
+
 
 }

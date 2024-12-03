@@ -31,7 +31,7 @@ public class MiniBoss extends FighterPlane {
         double initialTranslateY = getTranslateY();
         moveVertically(movementStrategy.getNextMove());
         double currentPosition = getLayoutY() + getTranslateY();
-        if (isWithinBounds(currentPosition)) {
+        if (!isWithinBounds(currentPosition)) {
             setTranslateY(initialTranslateY);
         }
     }

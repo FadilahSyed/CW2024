@@ -1,5 +1,6 @@
 package com.example.demo.utils;
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.PlaneFactory;
 import com.example.demo.actors.planes.EnemyPlane;
 import com.example.demo.actors.planes.Enemy2Plane;
 import com.example.demo.actors.planes.MiniBoss;
@@ -23,13 +24,16 @@ public class EnemySpawner {
 
         for (int i = 0; i < enemiesToSpawn; i++) {
             if (random.nextDouble() < config.getEnemySpawnProbability()) {
-                newEnemies.add(new EnemyPlane(screenWidth, random.nextDouble() * enemyMaximumYPosition));
+                newEnemies.add(PlaneFactory.createPlane("enemy",screenWidth,random.nextDouble() * enemyMaximumYPosition,0));
+                //newEnemies.add(new EnemyPlane(screenWidth, random.nextDouble() * enemyMaximumYPosition));
             }
             if (config.getEnemy2SpawnProbability() > 0 && random.nextDouble() < config.getEnemy2SpawnProbability()) {
-                newEnemies.add(new Enemy2Plane(screenWidth, random.nextDouble() * enemyMaximumYPosition));
+                newEnemies.add(PlaneFactory.createPlane("enemy2",screenWidth,random.nextDouble() * enemyMaximumYPosition,0));
+                //newEnemies.add(new Enemy2Plane(screenWidth, random.nextDouble() * enemyMaximumYPosition));
             }
-            if ("LevelFour".equals(config.getNextLevel())) {
-                newEnemies.add(new MiniBoss(random.nextDouble() * enemyMaximumYPosition));
+            if ("LevelFour".equals(config.getNextLevel())&& currentNumberOfEnemies==0) {
+                newEnemies.add(PlaneFactory.createPlane("miniboss",screenWidth,random.nextDouble() * enemyMaximumYPosition,0));
+                //newEnemies.add(new MiniBoss(random.nextDouble() * enemyMaximumYPosition));
             }
         }
 

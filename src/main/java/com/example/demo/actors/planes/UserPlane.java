@@ -94,6 +94,7 @@ public class UserPlane extends FighterPlane {
 
 	public void incrementKillCount() {
 		numberOfKills++;
+		System.out.println(numberOfKills);
 	}
 
 	//private methods
