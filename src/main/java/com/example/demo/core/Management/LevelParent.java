@@ -14,6 +14,7 @@ import javafx.scene.image.*;
 import javafx.util.Duration;
 
 public abstract class LevelParent {
+	private final GameLoop gameLoop;
 	private boolean levelCompleted = false; //flag is true when the level is completed
 
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
@@ -23,7 +24,7 @@ public abstract class LevelParent {
 	private final double enemyMaximumYPosition;
 
 	private final Group root;
-	private final Timeline timeline;
+	//private final Timeline timeline;
 	private final UserPlane user;
 	private final Scene scene;
 	private final ImageView background;
@@ -43,7 +44,7 @@ public abstract class LevelParent {
 	public LevelParent(LevelConfig config, double screenHeight, double screenWidth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
-		this.timeline = new Timeline();
+		//this.timeline = new Timeline();
 
 		this.user = new UserPlane(config.getPlayerInitialHealth());
 		this.friendlyUnits = new ArrayList<>();
@@ -59,11 +60,12 @@ public abstract class LevelParent {
 		this.actorManager=new ActorManager(root);
 		this.backgroundHandler=new BackgroundHandler(background,user,this);
 		this.collisionHandler=new CollisionHandler();
+		this.gameLoop=new GameLoop(MILLISECOND_DELAY,this::updateScene);
 
 		this.levelView = instantiateLevelView(config);
 		this.currentNumberOfEnemies = 0;
 
-		initializeTimeline();
+		//initializeTimeline();
 		friendlyUnits.add(user);
 	}
 
@@ -89,12 +91,12 @@ public abstract class LevelParent {
 	public void startGame() {
 		levelCompleted=false; //levelCompleted flag reset when level starts
 		background.requestFocus();
-		timeline.play();
+		gameLoop.start();
 	}
 
 	public void goToNextLevel(String levelName) {
 		if (!levelCompleted && eventListener != null) {
-			timeline.stop();
+			gameLoop.stop();
 			eventListener.onLevelEvent(levelName);
 			levelCompleted = true;}
 	}
@@ -110,11 +112,11 @@ public abstract class LevelParent {
 		checkIfGameOver();
 	}
 
-	private void initializeTimeline() {
+	/*private void initializeTimeline() {
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame gameLoop = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> updateScene());
 		timeline.getKeyFrames().add(gameLoop);
-	}
+	}*/
 
 
 
@@ -143,11 +145,18 @@ public abstract class LevelParent {
 		newEnemies.forEach(this::addEnemyUnit);
 	}
 
-	private void updateActors() {
+	/*private void updateActors() {
 		friendlyUnits.forEach(ActiveActorDestructible::updateActor);
 		enemyUnits.forEach(ActiveActorDestructible::updateActor);
 		userProjectiles.forEach(ActiveActorDestructible::updateActor);
 		enemyProjectiles.forEach(ActiveActorDestructible::updateActor);
+	}*/
+
+	private void updateActors() {
+		actorManager.updateActors(friendlyUnits);
+		actorManager.updateActors(enemyUnits);
+		actorManager.updateActors(userProjectiles);
+		actorManager.updateActors(enemyProjectiles);
 	}
 
 	private void removeAllDestroyedActors() {
@@ -191,14 +200,14 @@ public abstract class LevelParent {
 
 
 	protected void winGame() {
-		timeline.stop();
+		gameLoop.stop();
 		if(eventListener!=null) {
 			eventListener.onLevelEvent(Controller.GameEvent.WIN_GAME.name());
 		}
 	}
 
 	protected void loseGame() {
-		timeline.stop();
+		gameLoop.stop();
 		if(eventListener!=null) {
 			eventListener.onLevelEvent(Controller.GameEvent.GAME_OVER.name());
 		}
@@ -221,7 +230,7 @@ public abstract class LevelParent {
 
 	protected void addEnemyUnit(ActiveActorDestructible enemy) {
 		enemyUnits.add(enemy);
-		root.getChildren().add(enemy);
+		actorManager.addActor(enemy);
 	}
 
 	protected double getEnemyMaximumYPosition() {
