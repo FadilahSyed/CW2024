@@ -1,11 +1,11 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
-import com.example.demo.actors.movement.MovementPattern;
+import com.example.demo.actors.movement.RandomMovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
 
-public class Enemy3Plane extends FighterPlane {
+public class Enemy2Plane extends FighterPlane {
 
     private static final String IMAGE_NAME = "enemy3plane.png";
     private static final int IMAGE_HEIGHT = 45;
@@ -17,9 +17,9 @@ public class Enemy3Plane extends FighterPlane {
 
     private final MovementStrategy movementStrategy;
 
-    public Enemy3Plane(double initialXPos, double initialYPos) {
+    public Enemy2Plane(double initialXPos, double initialYPos) {
         super(IMAGE_NAME, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH);
-        this.movementStrategy=new MovementPattern();
+        this.movementStrategy=new RandomMovementPattern();
     }
 
     @Override

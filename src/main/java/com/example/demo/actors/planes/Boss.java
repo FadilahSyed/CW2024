@@ -1,9 +1,8 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
-import com.example.demo.actors.movement.MovementPattern;
+import com.example.demo.actors.movement.RandomMovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
-import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.actors.shield.ShieldManager;
 import com.example.demo.actors.shield.ShieldStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
@@ -28,7 +27,7 @@ public class Boss extends FighterPlane {
 	//constructor
 	public Boss(LevelViewLevelTwo levelView) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
-		this.movementStrategy = new MovementPattern();
+		this.movementStrategy = new RandomMovementPattern();
 		this.shieldStrategy = new ShieldManager(levelView);
 	}
 

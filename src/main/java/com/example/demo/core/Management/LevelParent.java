@@ -3,6 +3,7 @@ import java.util.*;
 
 import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.planes.FighterPlane;
+import com.example.demo.controller.Controller;
 import com.example.demo.ui.LevelView;
 import com.example.demo.actors.planes.UserPlane;
 import com.example.demo.utils.ImageLoader;
@@ -115,30 +116,6 @@ public abstract class LevelParent {
 		timeline.getKeyFrames().add(gameLoop);
 	}
 
-	/*
-	private void initializeBackground() {
-		background.setFocusTraversable(true);
-		background.setFitHeight(screenHeight);
-		background.setFitWidth(screenWidth);
-		background.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent e) {
-				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP) user.moveUp();
-				if (kc == KeyCode.DOWN) user.moveDown();
-				if (kc == KeyCode.LEFT) user.moveLeft();
-				if (kc == KeyCode.RIGHT) user.moveRight();
-				if (kc == KeyCode.SPACE) fireProjectile();
-			}
-		});
-		background.setOnKeyReleased(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent e) {
-				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP || kc == KeyCode.DOWN) user.stopVertical();
-				if (kc == KeyCode.LEFT || kc == KeyCode.RIGHT) user.stopHorizontal();
-			}
-		});
-		root.getChildren().add(background);
-	}*/
 
 
 	protected void fireProjectile() {
@@ -172,24 +149,7 @@ public abstract class LevelParent {
 		actorManager.removeDestroyedActors(enemyProjectiles);
 	}
 
-	/*private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
-		List<ActiveActorDestructible> destroyedActors = actors.stream().filter(actor -> actor.isDestroyed())
-				.collect(Collectors.toList());
-		root.getChildren().removeAll(destroyedActors);
-		actors.removeAll(destroyedActors);
-	}
 
-	 */
-	/*
-	private void removeDestroyedActors(List<ActiveActorDestructible> actors) {
-		actors.removeIf(actor -> {
-			if (actor.isDestroyed()) {
-				root.getChildren().remove(actor);
-				return true;
-			}
-			return false;
-		});
-	}*/
 
 
 	private void handleCollisionsAndDamage() {
@@ -199,17 +159,7 @@ public abstract class LevelParent {
 		collisionHandler.handleCollisions(friendlyUnits, enemyUnits);
 	}
 
-	/*private void handleCollisions(List<ActiveActorDestructible> actors1,
-								  List<ActiveActorDestructible> actors2) {
-		for (ActiveActorDestructible actor : actors2) {
-			for (ActiveActorDestructible otherActor : actors1) {
-				if (actor.getBoundsInParent().intersects(otherActor.getBoundsInParent())) {
-					actor.takeDamage();
-					otherActor.takeDamage();
-				}
-			}
-		}
-	}*/
+
 
 	private void handleEnemyPenetration() {
 		for (ActiveActorDestructible enemy : enemyUnits) {
@@ -230,23 +180,19 @@ public abstract class LevelParent {
 		}
 	}
 
-	/*
-	private boolean enemyHasPenetratedDefenses(ActiveActorDestructible enemy) {
-		return Math.abs(enemy.getTranslateX()) > screenWidth;
-	}*/
+
 
 	protected void winGame() {
 		timeline.stop();
 		if(eventListener!=null) {
-			eventListener.onLevelEvent("wingame");
+			eventListener.onLevelEvent(Controller.GameEvent.WIN_GAME.name());
 		}
 	}
 
 	protected void loseGame() {
-		System.out.println("LosegameLP called");
 		timeline.stop();
 		if(eventListener!=null) {
-			eventListener.onLevelEvent("gameover");
+			eventListener.onLevelEvent(Controller.GameEvent.GAME_OVER.name());
 		}
 		//setChanged();
 		//notifyObservers("gameover");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MovementPattern implements MovementStrategy {
+public class RandomMovementPattern implements MovementStrategy {
     private static final int VERTICAL_VELOCITY = 8;
     private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
     private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
@@ -14,7 +14,7 @@ public class MovementPattern implements MovementStrategy {
     private int consecutiveMovesInSameDirection;
     private int indexOfCurrentMove;
 
-    public MovementPattern() {
+    public RandomMovementPattern() {
         movePattern = new ArrayList<>();
         consecutiveMovesInSameDirection = 0;
         indexOfCurrentMove = 0;
@@ -23,7 +23,7 @@ public class MovementPattern implements MovementStrategy {
     public int getNextMove() {
         int currentMove = movePattern.get(indexOfCurrentMove);
         consecutiveMovesInSameDirection++;
-        if (consecutiveMovesInSameDirection == MAX_FRAMES_WITH_SAME_MOVE) {
+        if (consecutiveMovesInSameDirection == getMaxFramesWithSameMove()) {
             Collections.shuffle(movePattern);
             consecutiveMovesInSameDirection = 0;
             indexOfCurrentMove++;
@@ -35,10 +35,17 @@ public class MovementPattern implements MovementStrategy {
     }
     private void initializeMovePattern() {
         for (int i = 0; i < MOVE_FREQUENCY_PER_CYCLE; i++) {
-            movePattern.add(VERTICAL_VELOCITY);
-            movePattern.add(-VERTICAL_VELOCITY);
+            movePattern.add(getVerticalVelocity());
+            movePattern.add(-getVerticalVelocity());
             movePattern.add(ZERO);
         }
         Collections.shuffle(movePattern);
     }
+
+    public static int getVerticalVelocity() {
+        return VERTICAL_VELOCITY;
+    }
+    public static int getMaxFramesWithSameMove() {
+        return MAX_FRAMES_WITH_SAME_MOVE;
+    } //encapsulation???
 }

@@ -20,11 +20,4 @@ public class ZigZagMovement implements ProjectileMovementStrategy {
 
         frameCount++;
     }
-
-    /*@Override
-    public void updatePosition(Projectile projectile) {
-        projectile.moveHorizontally(HORIZONTAL_VELOCITY);
-        projectile.moveVertically(direction*AMPLITUDE);
-        direction*=-1;
-    }*/
 }
