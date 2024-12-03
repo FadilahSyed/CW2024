@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.core.Levels.LevelFactory;
+import com.example.demo.core.Management.LevelFactory;
 import com.example.demo.ui.GameUIFactory;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;

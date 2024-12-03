@@ -1,6 +1,6 @@
-package com.example.demo.core.Levels;
+package com.example.demo.core.Management;
 
-import com.example.demo.core.Management.LevelParent;
+import com.example.demo.core.Levels.*;
 
 public class LevelFactory {
     public static LevelParent createLevel(String levelName, double screenHeight, double screenWidth) {
@@ -13,8 +13,8 @@ public class LevelFactory {
                 return new LevelThree(screenHeight,screenWidth);
             case "levelfour":
                 return new LevelFour(screenHeight,screenWidth);
-            case "levelfive":
-                return new LevelFive(screenHeight,screenWidth);
+            case "levelfinal":
+                return new LevelFinal(screenHeight,screenWidth);
             default:
                 throw new IllegalArgumentException("Invalid level name: "+levelName);
         }

@@ -40,18 +40,18 @@ public abstract class LevelParent {
 	private LevelEventListener eventListener;
 	private LevelView levelView;
 
-	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
+	public LevelParent(LevelConfig config, double screenHeight, double screenWidth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		this.timeline = new Timeline();
 
-		this.user = new UserPlane(playerInitialHealth);
+		this.user = new UserPlane(config.getPlayerInitialHealth());
 		this.friendlyUnits = new ArrayList<>();
 		this.enemyUnits = new ArrayList<>();
 		this.userProjectiles = new ArrayList<>();
 		this.enemyProjectiles = new ArrayList<>();
 
-		this.background = new ImageView(ImageLoader.load(backgroundImageName));
+		this.background = new ImageView(ImageLoader.load(config.getBackgroundImage()));
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
@@ -60,7 +60,7 @@ public abstract class LevelParent {
 		this.backgroundHandler=new BackgroundHandler(background,user,this);
 		this.collisionHandler=new CollisionHandler();
 
-		this.levelView = instantiateLevelView();
+		this.levelView = instantiateLevelView(config);
 		this.currentNumberOfEnemies = 0;
 
 		initializeTimeline();
@@ -73,7 +73,7 @@ public abstract class LevelParent {
 
 	protected abstract void spawnEnemyUnits();
 
-	protected abstract LevelView instantiateLevelView();
+	protected abstract LevelView instantiateLevelView(LevelConfig config);
 
 	public Scene initializeScene() {
 		backgroundHandler.initializeBackground(root,screenWidth,screenHeight);
