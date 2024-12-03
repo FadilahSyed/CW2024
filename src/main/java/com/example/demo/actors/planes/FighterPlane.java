@@ -1,13 +1,14 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.PlaneConstants;
 import com.example.demo.projectiles.ProjectileFactory;
 
 public abstract class FighterPlane extends ActiveActorDestructible {
 
 	private int health;
-	private static final int Y_POSITION_UPPER_BOUND = 100;
-	private static final int Y_POSITION_LOWER_BOUND = 475;
+	private static final int Y_POSITION_UPPER_BOUND = PlaneConstants.Y_POSITION_UPPER_BOUND;
+	private static final int Y_POSITION_LOWER_BOUND = PlaneConstants.Y_POSITION_LOWER_BOUND;
 
 
 	//constructors

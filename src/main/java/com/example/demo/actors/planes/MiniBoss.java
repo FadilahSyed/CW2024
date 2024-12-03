@@ -1,6 +1,7 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.PlaneConstants;
 import com.example.demo.actors.movement.RandomMovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
@@ -9,12 +10,14 @@ public class MiniBoss extends FighterPlane {
 
 
     private static final String IMAGE_NAME = "enemyplane.png";
-    private static final int IMAGE_HEIGHT = 65;
-    private static final double INITIAL_X_POSITION = 1000.0;
-    private static final double PROJECTILE_X_POSITION_OFFSET = -50.0;
-    private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
-    private static final int INITIAL_HEALTH = 10;
-    private static final double FIRE_RATE = .02;
+
+    private static final int IMAGE_HEIGHT = PlaneConstants.MINIBOSS_IMAGE_HEIGHT;
+    private static final double PROJECTILE_X_POSITION_OFFSET =PlaneConstants.MINIBOSS_PROJECTILE_X_POSITION_OFFSET;
+    private static final double PROJECTILE_Y_POSITION_OFFSET = PlaneConstants.PROJECTILE_Y_POSITION_OFFSET;
+    private static final int INITIAL_HEALTH = PlaneConstants.MINIBOSS_INITIAL_HEALTH;
+    private static final double FIRE_RATE = PlaneConstants.MINIBOSS_FIRE_RATE;
+    private static final double INITIAL_X_POSITION = PlaneConstants.INITIAL_X_POSITION;
+
 
     private final MovementStrategy movementStrategy;
     public MiniBoss(double initialYPos) {

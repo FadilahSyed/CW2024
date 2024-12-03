@@ -1,10 +1,11 @@
 package com.example.demo.actors.shield;
 
+import com.example.demo.actors.PlaneConstants;
 import com.example.demo.ui.LevelViewLevelTwo;
 
 public class ShieldManager implements ShieldStrategy{
-    private static final double SHIELD_PROBABILITY = .002;
-    private static final int MAX_FRAMES_WITH_SHIELD = 250;
+    private static final double SHIELD_PROBABILITY = PlaneConstants.SHIELD_PROBABILITY;
+    private static final int MAX_FRAMES_WITH_SHIELD = PlaneConstants.MAX_FRAMES_WITH_SHIELD;
     private final LevelViewLevelTwo levelView;
     private boolean isShielded;
     private int activeShieldFrames;

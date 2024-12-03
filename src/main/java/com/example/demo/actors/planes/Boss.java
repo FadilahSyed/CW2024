@@ -1,6 +1,7 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.PlaneConstants;
 import com.example.demo.actors.movement.RandomMovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.actors.shield.ShieldManager;
@@ -12,14 +13,12 @@ public class Boss extends FighterPlane {
 
 	// constant variables
 	private static final String IMAGE_NAME = "bossplane.png";
-	private static final double INITIAL_X_POSITION = 1000.0;
-	private static final double INITIAL_Y_POSITION = 400;
-	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
-	private static final double BOSS_FIRE_RATE = .04;
-	private static final int IMAGE_HEIGHT = 59;
-	private static final int HEALTH = 50;
-	private static final int Y_POSITION_UPPER_BOUND = 100;
-	private static final int Y_POSITION_LOWER_BOUND = 475;
+	private static final double INITIAL_X_POSITION = PlaneConstants.INITIAL_X_POSITION;
+	private static final double INITIAL_Y_POSITION = PlaneConstants.INITIAL_Y_POSITION;
+	private static final double PROJECTILE_Y_POSITION_OFFSET = PlaneConstants.BOSS_PROJECTILE_Y_POSITION_OFFSET;
+	private static final double BOSS_FIRE_RATE = PlaneConstants.BOSS_FIRE_RATE;
+	private static final int IMAGE_HEIGHT = PlaneConstants.BOSS_IMAGE_HEIGHT;
+	private static final int HEALTH = PlaneConstants.BOSS_INITIAL_HEALTH;
 
 	private final MovementStrategy movementStrategy;
 	private final ShieldStrategy shieldStrategy;

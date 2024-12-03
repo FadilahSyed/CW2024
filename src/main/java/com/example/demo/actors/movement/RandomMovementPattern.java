@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.example.demo.actors.PlaneConstants;
+
 public class RandomMovementPattern implements MovementStrategy {
-    private static final int VERTICAL_VELOCITY = 8;
-    private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
-    private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
+    private static final int VERTICAL_VELOCITY = PlaneConstants.VERTICAL_VELOCITY;
+    private static final int MOVE_FREQUENCY_PER_CYCLE = PlaneConstants.MOVE_FREQUENCY_PER_CYCLE;
+    private static final int MAX_FRAMES_WITH_SAME_MOVE = PlaneConstants.MAX_FRAMES_WITH_SAME_MOVE;
     private static final int ZERO = 0;
 
     private final List<Integer> movePattern;

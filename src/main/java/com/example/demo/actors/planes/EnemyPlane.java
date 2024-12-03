@@ -1,17 +1,19 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.PlaneConstants;
 import com.example.demo.projectiles.ProjectileFactory;
 
 public class EnemyPlane extends FighterPlane {
 
 	private static final String IMAGE_NAME = "enemyplane.png";
-	private static final int IMAGE_HEIGHT = 56;
-	private static final int HORIZONTAL_VELOCITY = -6;
-	private static final double PROJECTILE_X_POSITION_OFFSET = -100.0;
-	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
-	private static final int INITIAL_HEALTH = 1;
-	private static final double FIRE_RATE = .01;
+
+	private static final int IMAGE_HEIGHT = PlaneConstants.ENEMY_IMAGE_HEIGHT;
+	private static final int HORIZONTAL_VELOCITY = PlaneConstants.ENEMY_HORIZONTAL_VELOCITY;
+	private static final double PROJECTILE_X_POSITION_OFFSET =PlaneConstants.PROJECTILE_X_POSITION_OFFSET;
+	private static final double PROJECTILE_Y_POSITION_OFFSET = PlaneConstants.PROJECTILE_Y_POSITION_OFFSET;
+	private static final int INITIAL_HEALTH = PlaneConstants.ENEMY_INITIAL_HEALTH;
+	private static final double FIRE_RATE = PlaneConstants.ENEMY_FIRE_RATE;
 
 	//private final MovementStrategy movementStrategy;
 

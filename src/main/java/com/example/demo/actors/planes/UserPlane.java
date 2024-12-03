@@ -1,6 +1,7 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.PlaneConstants;
 import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.projectiles.ProjectileFactory;
 
@@ -8,17 +9,17 @@ public class UserPlane extends FighterPlane {
 
 	//constants
 	private static final String IMAGE_NAME = "userplane.png";
-	private static final double Y_UPPER_BOUND = -40;
-	private static final double Y_LOWER_BOUND = 600.0;
-	private static final double INITIAL_X_POSITION = 5.0;
-	private static final double INITIAL_Y_POSITION = 300.0;
-	private static final double X_LEFT_BOUND=5.0;
-	private static final double X_RIGHT_BOUND=1200.0;
+	private static final double Y_UPPER_BOUND = PlaneConstants.Y_UPPER_BOUND;
+	private static final double Y_LOWER_BOUND = PlaneConstants.Y_LOWER_BOUND;
+	private static final double INITIAL_X_POSITION = PlaneConstants.USER_INITIAL_X_POSITION;
+	private static final double INITIAL_Y_POSITION = PlaneConstants.USER_INITIAL_Y_POSITION;
+	private static final double X_LEFT_BOUND=PlaneConstants.X_LEFT_BOUND;
+	private static final double X_RIGHT_BOUND=PlaneConstants.X_RIGHT_BOUND;
 
-	private static final int IMAGE_HEIGHT = 42;
-	private static final int VELOCITY = 8;
-	private static final int PROJECTILE_X_POSITION = 110;
-	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
+	private static final int IMAGE_HEIGHT = PlaneConstants.USER_IMAGE_HEIGHT;
+	private static final int VELOCITY = PlaneConstants.VERTICAL_VELOCITY;
+	private static final int PROJECTILE_X_POSITION = PlaneConstants.PROJECTILE_X_POSITION;
+	private static final int PROJECTILE_Y_POSITION_OFFSET = PlaneConstants.USER_PROJECTILE_Y_POSITION_OFFSET;
 
 	//instance variables
 	private int verticalVelocityMultiplier;

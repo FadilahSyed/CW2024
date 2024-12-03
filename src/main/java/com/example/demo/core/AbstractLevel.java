@@ -3,6 +3,7 @@ import java.util.*;
 
 import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.ActorManager;
+import com.example.demo.actors.PlaneFactory;
 import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.controller.Controller;
 import com.example.demo.ui.LevelView;
@@ -48,7 +49,7 @@ public abstract class AbstractLevel {
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		//this.timeline = new Timeline();
 
-		this.user = new UserPlane(config.getPlayerInitialHealth());
+		this.user = (UserPlane) PlaneFactory.createPlane("user",screenWidth,screenHeight,(config.getPlayerInitialHealth()));
 		this.friendlyUnits = new ArrayList<>();
 		this.enemyUnits = new ArrayList<>();
 		this.userProjectiles = new ArrayList<>();
