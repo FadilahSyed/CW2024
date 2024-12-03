@@ -1,6 +1,7 @@
-package com.example.demo.core.Management;
+package com.example.demo.utils;
 
 import com.example.demo.actors.planes.UserPlane;
+import com.example.demo.core.AbstractLevel;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -9,9 +10,9 @@ import javafx.scene.input.KeyEvent;
 public class BackgroundHandler {
     private final ImageView background;
     private final UserPlane user;
-    private final LevelParent level;
+    private final AbstractLevel level;
 
-    public BackgroundHandler(ImageView background, UserPlane user, LevelParent level) {
+    public BackgroundHandler(ImageView background, UserPlane user, AbstractLevel level) {
         this.background=background;
         this.user=user;
         this.level=level;

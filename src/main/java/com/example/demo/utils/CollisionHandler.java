@@ -1,4 +1,4 @@
-package com.example.demo.core.Management;
+package com.example.demo.utils;
 
 import com.example.demo.actors.ActiveActorDestructible;
 

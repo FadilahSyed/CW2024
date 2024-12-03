@@ -1,9 +1,9 @@
-package com.example.demo.core.Management;
+package com.example.demo.core;
 
-import com.example.demo.core.Levels.*;
+import com.example.demo.core.levels.*;
 
 public class LevelFactory {
-    public static LevelParent createLevel(String levelName, double screenHeight, double screenWidth) {
+    public static AbstractLevel createLevel(String levelName, double screenHeight, double screenWidth) {
         switch(levelName.toLowerCase()) {
             case "levelone":
                 return new LevelOne(screenHeight,screenWidth);

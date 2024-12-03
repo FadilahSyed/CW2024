@@ -1,13 +1,11 @@
-package com.example.demo.core.Levels;
+package com.example.demo.core.levels;
 
-import com.example.demo.actors.ActiveActorDestructible;
-import com.example.demo.actors.planes.MiniBoss;
-import com.example.demo.core.Management.LevelConfig;
-import com.example.demo.core.Management.LevelConfigFactory;
-import com.example.demo.core.Management.LevelParent;
+import com.example.demo.core.LevelConfig;
+import com.example.demo.core.LevelConfigFactory;
+import com.example.demo.core.AbstractLevel;
 import com.example.demo.ui.LevelView;
 
-public class LevelThree extends LevelParent {
+public class LevelThree extends AbstractLevel {
     /*private static final String BACKGROUND_IMAGE_NAME = "background2.jpeg";
     private static final String NEXT_LEVEL = "LevelFour";
     private static final int TOTAL_ENEMIES = 3;

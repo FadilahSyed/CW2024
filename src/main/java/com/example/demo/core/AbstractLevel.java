@@ -1,19 +1,21 @@
-package com.example.demo.core.Management;
+package com.example.demo.core;
 import java.util.*;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.actors.ActorManager;
 import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.controller.Controller;
 import com.example.demo.ui.LevelView;
 import com.example.demo.actors.planes.UserPlane;
+import com.example.demo.utils.BackgroundHandler;
+import com.example.demo.utils.CollisionHandler;
+import com.example.demo.utils.EnemySpawner;
 import com.example.demo.utils.ImageLoader;
-import javafx.animation.*;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
-import javafx.util.Duration;
 
-public abstract class LevelParent {
+public abstract class AbstractLevel {
 	private final GameLoop gameLoop;
 	private boolean levelCompleted = false; //flag is true when the level is completed
 
@@ -41,7 +43,7 @@ public abstract class LevelParent {
 	private LevelEventListener eventListener;
 	private LevelView levelView;
 
-	public LevelParent(LevelConfig config, double screenHeight, double screenWidth) {
+	public AbstractLevel(LevelConfig config, double screenHeight, double screenWidth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
 		//this.timeline = new Timeline();
@@ -120,7 +122,7 @@ public abstract class LevelParent {
 
 
 
-	protected void fireProjectile() {
+	public void fireProjectile() {
 		ActiveActorDestructible projectile = user.fireProjectile();
 		root.getChildren().add(projectile);
 		userProjectiles.add(projectile);

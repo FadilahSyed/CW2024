@@ -1,13 +1,13 @@
-package com.example.demo.core.Levels;
+package com.example.demo.core.levels;
 
 import com.example.demo.actors.planes.Boss;
-import com.example.demo.core.Management.LevelConfig;
-import com.example.demo.core.Management.LevelConfigFactory;
-import com.example.demo.core.Management.LevelParent;
+import com.example.demo.core.LevelConfig;
+import com.example.demo.core.LevelConfigFactory;
+import com.example.demo.core.AbstractLevel;
 import com.example.demo.ui.LevelView;
 import com.example.demo.ui.LevelViewLevelTwo;
 
-public class LevelFinal extends LevelParent {
+public class LevelFinal extends AbstractLevel {
 
 	/*private static final String BACKGROUND_IMAGE_NAME = "background3.jpeg";
 	private static final int PLAYER_INITIAL_HEALTH = 5;*/

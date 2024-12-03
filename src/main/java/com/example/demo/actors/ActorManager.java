@@ -1,4 +1,4 @@
-package com.example.demo.core.Management;
+package com.example.demo.actors;
 
 import com.example.demo.actors.ActiveActorDestructible;
 import javafx.scene.Group;

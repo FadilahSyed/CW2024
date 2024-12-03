@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.core.Management.LevelFactory;
+import com.example.demo.core.LevelFactory;
 import com.example.demo.ui.GameUIFactory;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import com.example.demo.core.Management.LevelParent;
+import com.example.demo.core.AbstractLevel;
 
 public class Controller {
 
@@ -37,7 +37,7 @@ public class Controller {
 
 	public void loadAndStartLevel(String levelName) {
 		try {
-			LevelParent level= LevelFactory.createLevel(levelName,stage.getHeight(),stage.getWidth());
+			AbstractLevel level= LevelFactory.createLevel(levelName,stage.getHeight(),stage.getWidth());
 			level.setEventListener(event-> {
 				try {
 					GameEvent gameEvent=GameEvent.valueOf(event.toUpperCase());

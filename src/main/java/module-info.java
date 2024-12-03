@@ -13,6 +13,8 @@ module com.example.demo {
     opens com.example.demo.actors.movement to javafx.fxml;
     opens com.example.demo.actors.shield to javafx.fxml;
     opens com.example.demo.actors.planes to javafx.fxml;
-    opens com.example.demo.core.Management to javafx.fxml;
-    opens com.example.demo.core.Levels to javafx.fxml;
+    //opens com.example.demo.core.Management to javafx.fxml;
+    opens com.example.demo.core.levels to javafx.fxml;
+    opens com.example.demo.utils to javafx.fxml;
+    opens com.example.demo.core to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.example.demo.core.Management;
+package com.example.demo.core;
 
 public class LevelConfig {
     private final String backgroundImage;
