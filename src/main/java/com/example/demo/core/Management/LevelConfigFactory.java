@@ -8,10 +8,10 @@ public class LevelConfigFactory{
                     "background1.jpeg","LevelTwo",5,10,0.2,0.0,5
             ),
             "LevelTwo",new LevelConfig(
-                    "background1.jpeg","LevelThree",5,10,0.2,0.0,5
+                    "background1.jpeg","LevelThree",5,10,0.0,0.2,5
             ),
             "LevelThree",new LevelConfig(
-                    "background2.jpeg","LevelFour",3,3,0.2,0.0,5
+                    "background2.jpeg","LevelFour",3,3,0.0,0.0,5
             ),
             "LevelFour",new LevelConfig(
                     "background2.jpeg","LevelFinal",7,15,0.2,0.1,5

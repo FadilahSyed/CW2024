@@ -38,7 +38,7 @@ public class LevelThree extends LevelParent {
 
     }
 
-    @Override
+    /*@Override
     protected void spawnEnemyUnits() {
         if (getCurrentNumberOfEnemies()==0) {
             for(int i=0;i< config.getTotalEnemies();i++) {
@@ -47,6 +47,10 @@ public class LevelThree extends LevelParent {
                 addEnemyUnit(newEnemy);
             }
         }
+    }*/
+    @Override
+    protected void spawnEnemyUnits() {
+        spawnEnemies(config);
     }
 
     @Override

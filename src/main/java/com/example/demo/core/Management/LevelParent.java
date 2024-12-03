@@ -135,6 +135,14 @@ public abstract class LevelParent {
 		}
 	}
 
+	protected void spawnEnemies(LevelConfig config) {
+		EnemySpawner spawner=new EnemySpawner(config);
+		List<ActiveActorDestructible> newEnemies=spawner.spawnEnemies(
+				getCurrentNumberOfEnemies(),getScreenWidth(),getEnemyMaximumYPosition()
+		);
+		newEnemies.forEach(this::addEnemyUnit);
+	}
+
 	private void updateActors() {
 		friendlyUnits.forEach(ActiveActorDestructible::updateActor);
 		enemyUnits.forEach(ActiveActorDestructible::updateActor);

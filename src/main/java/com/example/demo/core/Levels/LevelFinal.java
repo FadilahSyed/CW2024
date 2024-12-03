@@ -45,6 +45,7 @@ public class LevelFinal extends LevelParent {
 		}
 	}
 
+
 	@Override
 	protected LevelView instantiateLevelView(LevelConfig config) {
 		levelView = new LevelViewLevelTwo(getRoot(), config.getPlayerInitialHealth());

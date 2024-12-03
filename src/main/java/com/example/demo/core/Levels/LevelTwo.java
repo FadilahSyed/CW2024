@@ -38,16 +38,20 @@ public class LevelTwo extends LevelParent {
         getRoot().getChildren().add(getUser());
     }
 
-    @Override
+    /*@Override
     protected void spawnEnemyUnits() {
         int currentNumberOfEnemies = getCurrentNumberOfEnemies();
         for (int i = 0; i < config.getTotalEnemies() - currentNumberOfEnemies; i++) {
-            if (Math.random() < config.getEnemySpawnProbability()) {
+            if (Math.random() < config.getEnemy2SpawnProbability()) {
                 double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
                 ActiveActorDestructible newEnemy = new Enemy2Plane(getScreenWidth(), newEnemyInitialYPosition);
                 addEnemyUnit(newEnemy);
             }
         }
+    }*/
+    @Override
+    protected void spawnEnemyUnits() {
+        spawnEnemies(config);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class LevelFour extends LevelParent {
         getRoot().getChildren().add(getUser());
     }
 
-    @Override
+    /*@Override
     protected void spawnEnemyUnits() {
         int currentNumberOfEnemies = getCurrentNumberOfEnemies();
         for (int i = 0; i < config.getTotalEnemies() - currentNumberOfEnemies; i++) {
@@ -49,12 +49,16 @@ public class LevelFour extends LevelParent {
                 ActiveActorDestructible newEnemy = new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition);
                 addEnemyUnit(newEnemy);
             }
-            if (Math.random() < config.getEnemySpecialSpawnProbability()) {
+            if (Math.random() < config.getEnemy2SpawnProbability()) {
                 double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
                 ActiveActorDestructible newEnemy = new Enemy2Plane(getScreenWidth(), newEnemyInitialYPosition);
                 addEnemyUnit(newEnemy);
             }
         }
+    }*/
+    @Override
+    protected void spawnEnemyUnits() {
+        spawnEnemies(config);
     }
 
     @Override

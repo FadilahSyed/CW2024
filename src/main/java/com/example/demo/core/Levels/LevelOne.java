@@ -43,6 +43,7 @@ public class LevelOne extends LevelParent {
 		getRoot().getChildren().add(getUser());
 	}
 
+	/*
 	@Override
 	protected void spawnEnemyUnits() {
 		int currentNumberOfEnemies = getCurrentNumberOfEnemies();
@@ -53,6 +54,10 @@ public class LevelOne extends LevelParent {
 				addEnemyUnit(new EnemyPlane(getScreenWidth(), newEnemyInitialYPosition));
 			}
 		}
+	}*/
+	@Override
+	protected void spawnEnemyUnits() {
+		spawnEnemies(config);
 	}
 
 	@Override

@@ -6,18 +6,18 @@ public class LevelConfig {
     private final int totalEnemies;
     private final int killsToAdvance;
     private final double enemySpawnProbability;
-    private final double enemySpecialSpawnProbability; // Optional for advanced levels
+    private final double enemy2SpawnProbability; // Optional for advanced levels
     private final int playerInitialHealth;
 
     public LevelConfig(String backgroundImage, String nextLevel, int totalEnemies,
                        int killsToAdvance, double enemySpawnProbability,
-                       double enemySpecialSpawnProbability, int playerInitialHealth) {
+                       double enemy2SpawnProbability, int playerInitialHealth) {
         this.backgroundImage=backgroundImage;
         this.nextLevel=nextLevel;
         this.totalEnemies=totalEnemies;
         this.killsToAdvance=killsToAdvance;
         this.enemySpawnProbability=enemySpawnProbability;
-        this.enemySpecialSpawnProbability=enemySpecialSpawnProbability;
+        this.enemy2SpawnProbability=enemy2SpawnProbability;
         this.playerInitialHealth=playerInitialHealth;
     }
     public String getBackgroundImage() {
@@ -40,8 +40,8 @@ public class LevelConfig {
         return enemySpawnProbability;
     }
 
-    public double getEnemySpecialSpawnProbability() {
-        return enemySpecialSpawnProbability;
+    public double getEnemy2SpawnProbability() {
+        return enemy2SpawnProbability;
     }
 
     public int getPlayerInitialHealth() {
