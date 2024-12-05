@@ -17,4 +17,6 @@ module com.example.demo {
     opens com.example.demo.core.levels to javafx.fxml;
     opens com.example.demo.utils to javafx.fxml;
     opens com.example.demo.core to javafx.fxml;
+    opens com.example.demo.ui.components to javafx.fxml;
+    opens com.example.demo.ui.menus to javafx.fxml;
 }

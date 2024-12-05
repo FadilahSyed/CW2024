@@ -1,17 +1,10 @@
-package com.example.demo.ui;
+package com.example.demo.ui.menus;
 
-import com.example.demo.controller.Controller;
-import com.example.demo.utils.ImageLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.geometry.Pos;
 
 
-public class MainMenu extends BaseMenu{
+public class MainMenu extends AbstractMenu {
     private static final String BACKGROUND_IMAGE_NAME = "gameoverbg.jpeg";
     private static final String TITLE_IMAGE = "titleLabelImage.png";
     private static final String START_IMAGE = "startButtonImage.png";
@@ -36,7 +29,7 @@ public class MainMenu extends BaseMenu{
 
 
     public void showTutorial() {
-        Tutorial tutorial =new Tutorial();
+        TutorialPopUp tutorial =new TutorialPopUp();
         tutorial.show(stage);
     }
 }

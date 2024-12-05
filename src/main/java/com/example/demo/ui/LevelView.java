@@ -1,5 +1,6 @@
 package com.example.demo.ui;
 
+import com.example.demo.ui.components.HeartDisplay;
 import javafx.scene.Group;
 
 public class LevelView {

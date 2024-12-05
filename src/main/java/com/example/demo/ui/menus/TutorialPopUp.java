@@ -1,4 +1,4 @@
-package com.example.demo.ui;
+package com.example.demo.ui.menus;
 
 import com.example.demo.utils.ImageLoader;
 import javafx.scene.Scene;
@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class Tutorial {
+public class TutorialPopUp {
 
     private static final String GIF = "calico.gif";
     protected static final int GIF_DIMENSIONS=100;

@@ -1,18 +1,9 @@
-package com.example.demo.ui;
+package com.example.demo.ui.menus;
 
-import com.example.demo.utils.ImageLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class WinGame extends BaseMenu{
+public class WinGameMenu extends AbstractMenu {
     private static final String BACKGROUND_IMAGE_NAME = "winGameBackground.jpeg";
     private static final String GAMEOVER_IMAGE = "youWin.png";
     private static final String REPLAY_IMAGE = "replayButtonImage.png";
@@ -20,7 +11,7 @@ public class WinGame extends BaseMenu{
 
     private final Runnable onReplay;
 
-    public WinGame(Stage stage, Runnable onReplay) {
+    public WinGameMenu(Stage stage, Runnable onReplay) {
         super(stage,BACKGROUND_IMAGE_NAME);
         this.onReplay=onReplay;
     }
