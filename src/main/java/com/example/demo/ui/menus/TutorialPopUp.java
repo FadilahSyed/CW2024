@@ -24,14 +24,11 @@ public class TutorialPopUp {
         popupStage.initOwner(ownerStage);
         popupStage.setTitle("How to Play?");
 
-        // Instructions content
-        Label instructionsLabel = new Label(
-                "Welcome to Sky Battle!\n\n" +
-                        "1. Use the arrow keys to move your character.\n" +
-                        "2. Press the spacebar to shoot.\n" +
-                        "3. Shoot enemy planes and avoid their fire.\n" +
-                        "4. Survive as long as you can to win!!!.\n\n" +
-                        "Have funnnn!"
+
+        Label instructionsLabel = new Label("Welcome to Sky Battle!\n\n"
+                + "1. Use the arrow keys to move your character.\n" +
+                "2. Press the spacebar to shoot.\n" + "3. Shoot enemy planes and avoid their fire.\n" +
+                "4. Survive as long as you can to win!!!.\n\n" + "Have funnnn!"
         );
         instructionsLabel.setFont(new Font("Times New Roman",20));
         instructionsLabel.setStyle("-fx-text-fill: black;");
@@ -40,11 +37,9 @@ public class TutorialPopUp {
         imageView.setFitWidth(GIF_DIMENSIONS);
         imageView.setFitHeight(GIF_DIMENSIONS);
 
-        // Close button
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> popupStage.close());
 
-        // Layout
         VBox layout = new VBox(10, instructionsLabel, closeButton);
         layout.setStyle("-fx-padding: 20; -fx-alignment: center;");
         layout.getChildren().addAll(imageView);

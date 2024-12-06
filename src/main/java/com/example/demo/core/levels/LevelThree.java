@@ -6,11 +6,6 @@ import com.example.demo.core.AbstractLevel;
 import com.example.demo.ui.LevelView;
 
 public class LevelThree extends AbstractLevel {
-    /*private static final String BACKGROUND_IMAGE_NAME = "background2.jpeg";
-    private static final String NEXT_LEVEL = "LevelFour";
-    private static final int TOTAL_ENEMIES = 3;
-    private static final int KILLS_TO_ADVANCE = 3;
-    private static final int PLAYER_INITIAL_HEALTH = 5;*/
     private final LevelConfig config;
 
 
@@ -35,17 +30,6 @@ public class LevelThree extends AbstractLevel {
             goToNextLevel(config.getNextLevel());}
 
     }
-
-    /*@Override
-    protected void spawnEnemyUnits() {
-        if (getCurrentNumberOfEnemies()==0) {
-            for(int i=0;i< config.getTotalEnemies();i++) {
-                double newEnemyInitialYPosition = Math.random() * getEnemyMaximumYPosition();
-                ActiveActorDestructible newEnemy = new MiniBoss(newEnemyInitialYPosition);
-                addEnemyUnit(newEnemy);
-            }
-        }
-    }*/
     @Override
     protected void spawnEnemyUnits() {
         spawnEnemies(config);

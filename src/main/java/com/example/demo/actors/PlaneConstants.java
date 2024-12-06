@@ -60,7 +60,6 @@ public class PlaneConstants {
 
 
     private PlaneConstants() {
-        // Prevent instantiation
     }
 
 

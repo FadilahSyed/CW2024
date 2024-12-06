@@ -1,6 +1,5 @@
 package com.example.demo.projectiles;
 
-import com.example.demo.actors.ActiveActorDestructible;
 public class ProjectileFactory {
     public static Projectile createProjectile(String type, double x, double y) {
         switch(type.toLowerCase()) {

@@ -1,6 +1,4 @@
 package com.example.demo.projectiles;
-
-import com.example.demo.projectiles.Projectile;
 import com.example.demo.projectiles.movement.ProjectileMovementStrategy;
 import com.example.demo.projectiles.movement.StraightMovement;
 

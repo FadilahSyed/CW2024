@@ -38,13 +38,13 @@ public class ShieldManager implements ShieldStrategy{
     private void activateShield() {
         isShielded = true;
         activeShieldFrames=0;
-        levelView.showShield(); //calls method from levelviewlevel2
+        levelView.showShield();
     }
 
     private void deactivateShield() {
         isShielded = false;
         activeShieldFrames = 0;
-        levelView.hideShield(); //calls method from levelviewlevel2
+        levelView.hideShield();
     }
 
     public void updateShieldPosition(double x, double y) {

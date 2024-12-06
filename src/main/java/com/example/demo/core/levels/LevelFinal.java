@@ -9,13 +9,9 @@ import com.example.demo.ui.LevelViewLevelTwo;
 
 public class LevelFinal extends AbstractLevel {
 
-	/*private static final String BACKGROUND_IMAGE_NAME = "background3.jpeg";
-	private static final int PLAYER_INITIAL_HEALTH = 5;*/
 	private final Boss boss;
 	private LevelViewLevelTwo levelView;
 	private LevelConfig config;
-	//private MovementPattern movementPattern;
-	//private ShieldManager shieldManager;
 
 	public LevelFinal(double screenHeight, double screenWidth) {
 		super(LevelConfigFactory.getConfig("LevelFinal"),screenHeight,screenWidth);
@@ -37,15 +33,12 @@ public class LevelFinal extends AbstractLevel {
 			winGame();
 		}
 	}
-
 	@Override
 	protected void spawnEnemyUnits() {
 		if (getCurrentNumberOfEnemies() == 0) {
 			addEnemyUnit(boss);
 		}
 	}
-
-
 	@Override
 	protected LevelView instantiateLevelView(LevelConfig config) {
 		levelView = new LevelViewLevelTwo(getRoot(), config.getPlayerInitialHealth());

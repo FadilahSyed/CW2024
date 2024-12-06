@@ -25,15 +25,12 @@ public class EnemySpawner {
         for (int i = 0; i < enemiesToSpawn; i++) {
             if (random.nextDouble() < config.getEnemySpawnProbability()) {
                 newEnemies.add(PlaneFactory.createPlane("enemy",screenWidth,random.nextDouble() * enemyMaximumYPosition,0));
-                //newEnemies.add(new EnemyPlane(screenWidth, random.nextDouble() * enemyMaximumYPosition));
             }
             if (config.getEnemy2SpawnProbability() > 0 && random.nextDouble() < config.getEnemy2SpawnProbability()) {
                 newEnemies.add(PlaneFactory.createPlane("enemy2",screenWidth,random.nextDouble() * enemyMaximumYPosition,0));
-                //newEnemies.add(new Enemy2Plane(screenWidth, random.nextDouble() * enemyMaximumYPosition));
             }
             if ("LevelFour".equals(config.getNextLevel())&& currentNumberOfEnemies==0) {
                 newEnemies.add(PlaneFactory.createPlane("miniboss",screenWidth,random.nextDouble() * enemyMaximumYPosition,0));
-                //newEnemies.add(new MiniBoss(random.nextDouble() * enemyMaximumYPosition));
             }
         }
 

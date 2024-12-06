@@ -11,8 +11,6 @@ public class ShieldImage extends ImageView {
 	private static final int SHIELD_SIZE = 200;
 	
 	public ShieldImage() {
-		//this.setLayoutX(xPosition);
-		//this.setLayoutY(yPosition);
 		this.setImage(ImageLoader.load(IMAGE_NAME));
 		this.setVisible(false);
 		this.setFitHeight(SHIELD_SIZE);

@@ -98,9 +98,5 @@ public class UserPlane extends FighterPlane {
 		System.out.println(numberOfKills);
 	}
 
-	//private methods
-	/*private boolean isMoving() {
-		return velocityMultiplier != 0;
-	}*/
 
 }

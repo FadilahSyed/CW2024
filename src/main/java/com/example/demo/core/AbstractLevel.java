@@ -47,7 +47,6 @@ public abstract class AbstractLevel {
 	public AbstractLevel(LevelConfig config, double screenHeight, double screenWidth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
-		//this.timeline = new Timeline();
 
 		this.user = (UserPlane) PlaneFactory.createPlane("user",screenWidth,screenHeight,(config.getPlayerInitialHealth()));
 		this.friendlyUnits = new ArrayList<>();
@@ -68,7 +67,6 @@ public abstract class AbstractLevel {
 		this.levelView = instantiateLevelView(config);
 		this.currentNumberOfEnemies = 0;
 
-		//initializeTimeline();
 		friendlyUnits.add(user);
 	}
 
@@ -115,14 +113,6 @@ public abstract class AbstractLevel {
 		checkIfGameOver();
 	}
 
-	/*private void initializeTimeline() {
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		KeyFrame gameLoop = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> updateScene());
-		timeline.getKeyFrames().add(gameLoop);
-	}*/
-
-
-
 	public void fireProjectile() {
 		ActiveActorDestructible projectile = user.fireProjectile();
 		root.getChildren().add(projectile);
@@ -148,13 +138,6 @@ public abstract class AbstractLevel {
 		newEnemies.forEach(this::addEnemyUnit);
 	}
 
-	/*private void updateActors() {
-		friendlyUnits.forEach(ActiveActorDestructible::updateActor);
-		enemyUnits.forEach(ActiveActorDestructible::updateActor);
-		userProjectiles.forEach(ActiveActorDestructible::updateActor);
-		enemyProjectiles.forEach(ActiveActorDestructible::updateActor);
-	}*/
-
 	private void updateActors() {
 		actorManager.updateActors(friendlyUnits);
 		actorManager.updateActors(enemyUnits);
@@ -168,19 +151,12 @@ public abstract class AbstractLevel {
 		actorManager.removeDestroyedActors(userProjectiles);
 		actorManager.removeDestroyedActors(enemyProjectiles);
 	}
-
-
-
-
 	private void handleCollisionsAndDamage() {
 		handleEnemyPenetration();
 		collisionHandler.handleCollisions(userProjectiles, enemyUnits);
 		collisionHandler.handleCollisions(enemyProjectiles, friendlyUnits);
 		collisionHandler.handleCollisions(friendlyUnits, enemyUnits);
 	}
-
-
-
 	private void handleEnemyPenetration() {
 		for (ActiveActorDestructible enemy : enemyUnits) {
 			if (collisionHandler.enemyHasPenetratedDefenses(enemy, screenWidth)) {
@@ -199,9 +175,6 @@ public abstract class AbstractLevel {
 			user.incrementKillCount();
 		}
 	}
-
-
-
 	protected void winGame() {
 		gameLoop.stop();
 		if(eventListener!=null) {
@@ -214,9 +187,6 @@ public abstract class AbstractLevel {
 		if(eventListener!=null) {
 			eventListener.onLevelEvent(Controller.GameEvent.GAME_OVER.name());
 		}
-		//setChanged();
-		//notifyObservers("gameover");
-		//levelView.showGameOverImage();
 	}
 
 	protected UserPlane getUser() {

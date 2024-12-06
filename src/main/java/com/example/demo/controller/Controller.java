@@ -26,8 +26,6 @@ public class Controller {
 	}
 
 	public void launchMainMenu() {
-		//MainMenu mainMenu = new MainMenu(stage, this::launchGame);
-		//mainMenu.show();
 		uiFactory.createMainMenu(stage,this::launchGame,stage.getWidth(), stage.getHeight()).show(stage.getWidth(), stage.getHeight());
 	}
 
@@ -42,7 +40,6 @@ public class Controller {
 				try {
 					GameEvent gameEvent=GameEvent.valueOf(event.toUpperCase());
 					handleGameEvent(gameEvent);
-					//handleGameEvent(GameEvent.valueOf(event.toUpperCase())));
 				} catch (IllegalArgumentException e) {
 					loadAndStartLevel(event);
 				}
@@ -55,25 +52,6 @@ public class Controller {
 		} catch (IllegalArgumentException e) {
 			showErrorAlert(e);
 		}
-
-		/*try {
-			LevelParent level = LevelLoader.loadLevel(className, stage.getHeight(), stage.getWidth());
-			level.setEventListener(event ->
-			{
-				if ("gameover".equals(event)) {
-					showGameOver();
-				} else if ("wingame".equals(event)) {
-					showWinGame();
-				} else {
-					loadAndStartLevel(event);
-				}
-			});
-			Scene scene = level.initializeScene();
-			stage.setScene(scene);
-			level.startGame();
-		} catch (ReflectiveOperationException e) {
-			showErrorAlert(e);
-		}*/
 	}
 
 	private void handleGameEvent(GameEvent event) {
@@ -92,20 +70,14 @@ public class Controller {
 
 	public void showGameOver() {
 		uiFactory.createGameOver(stage,this::launchGame,stage.getWidth(), stage.getHeight()).show(stage.getWidth(), stage.getHeight());
-		//GameOver gameOver = new GameOver(stage, this::launchGame);
-		//gameOver.show();
 	}
 
 	public void showWinGame() {
 		uiFactory.createWinGame(stage,this::launchGame,stage.getWidth(), stage.getHeight()).show(stage.getWidth(), stage.getHeight());
-		//WinGame winGame = new WinGame(stage, this::launchGame);
-		//winGame.show();
 	}
 
 
 	private void showErrorAlert(Exception e) {
-
-
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error Loading Level");
 		alert.setHeaderText("An error occurred: ");

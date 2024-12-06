@@ -10,23 +10,13 @@ public class HeartDisplay {
 	private static final int HEART_HEIGHT = 50;
 	private static final int INDEX_OF_FIRST_ITEM = 0;
 	private final HBox container = new HBox();
-	//private double containerXPosition;
-	//private double containerYPosition;
-	//private int numberOfHeartsToDisplay;
 	
 	public HeartDisplay(double xPosition, double yPosition, int heartsToDisplay) {
 		container.setLayoutX(xPosition);
 		container.setLayoutY(yPosition);
-		//this.numberOfHeartsToDisplay = heartsToDisplay;
-		//initializeContainer();
 		initializeHearts(heartsToDisplay);
 	}
-	
-	/*private void initializeContainer() {
-		container = new HBox();
-		container.setLayoutX(containerXPosition);
-		container.setLayoutY(containerYPosition);		
-	}*/
+
 	
 	private void initializeHearts(int numberOfHearts) {
 		for (int i = 0; i < numberOfHearts; i++) {

@@ -15,11 +15,8 @@ public class EnemyPlane extends FighterPlane {
 	private static final int INITIAL_HEALTH = PlaneConstants.ENEMY_INITIAL_HEALTH;
 	private static final double FIRE_RATE = PlaneConstants.ENEMY_FIRE_RATE;
 
-	//private final MovementStrategy movementStrategy;
-
 	public EnemyPlane(double initialXPos, double initialYPos) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, initialXPos, initialYPos, INITIAL_HEALTH);
-		//this.movementStrategy=new MovementPattern();
 	}
 
 	@Override

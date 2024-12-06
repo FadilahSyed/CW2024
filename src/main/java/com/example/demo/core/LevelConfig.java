@@ -6,7 +6,7 @@ public class LevelConfig {
     private final int totalEnemies;
     private final int killsToAdvance;
     private final double enemySpawnProbability;
-    private final double enemy2SpawnProbability; // Optional for advanced levels
+    private final double enemy2SpawnProbability;
     private final int playerInitialHealth;
 
     public LevelConfig(String backgroundImage, String nextLevel, int totalEnemies,
