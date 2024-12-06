@@ -1,4 +1,4 @@
-package com.example.demo.actors;
+package com.example.demo.actors.planes;
 
 public class PlaneConstants {
 

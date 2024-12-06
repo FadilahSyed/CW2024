@@ -1,6 +1,6 @@
 package com.example.demo.actors.shield;
 
-import com.example.demo.actors.PlaneConstants;
+import com.example.demo.actors.planes.PlaneConstants;
 import com.example.demo.ui.LevelViewLevelTwo;
 
 public class ShieldManager implements ShieldStrategy{

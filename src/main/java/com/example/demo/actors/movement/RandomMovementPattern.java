@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.example.demo.actors.PlaneConstants;
+import com.example.demo.actors.planes.PlaneConstants;
 
 public class RandomMovementPattern implements MovementStrategy {
     private static final int VERTICAL_VELOCITY = PlaneConstants.VERTICAL_VELOCITY;

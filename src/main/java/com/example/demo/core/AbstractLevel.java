@@ -3,7 +3,7 @@ import java.util.*;
 
 import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.ActorManager;
-import com.example.demo.actors.PlaneFactory;
+import com.example.demo.actors.planes.PlaneFactory;
 import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.controller.Controller;
 import com.example.demo.ui.LevelView;

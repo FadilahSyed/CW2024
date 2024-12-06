@@ -1,9 +1,6 @@
 package com.example.demo.utils;
 import com.example.demo.actors.ActiveActorDestructible;
-import com.example.demo.actors.PlaneFactory;
-import com.example.demo.actors.planes.EnemyPlane;
-import com.example.demo.actors.planes.Enemy2Plane;
-import com.example.demo.actors.planes.MiniBoss;
+import com.example.demo.actors.planes.PlaneFactory;
 import com.example.demo.core.LevelConfig;
 
 import java.util.ArrayList;

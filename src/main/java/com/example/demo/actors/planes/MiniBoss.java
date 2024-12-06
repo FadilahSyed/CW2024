@@ -1,7 +1,6 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
-import com.example.demo.actors.PlaneConstants;
 import com.example.demo.actors.movement.RandomMovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.projectiles.ProjectileFactory;

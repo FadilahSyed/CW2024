@@ -4,7 +4,6 @@ import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.movement.RandomMovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
-import com.example.demo.actors.PlaneConstants;
 
 public class Enemy2Plane extends FighterPlane {
 
