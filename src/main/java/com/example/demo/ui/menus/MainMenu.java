@@ -1,5 +1,6 @@
 package com.example.demo.ui.menus;
 
+import javafx.scene.Group;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
@@ -12,19 +13,20 @@ public class MainMenu extends AbstractMenu {
     private static final String EXIT_IMAGE = "exitButtonImage.png";
 
     private final Runnable onStartGame;
+    //private final Group root;
 
 
-    public MainMenu(Stage stage, Runnable onStartGame) {
-        super(stage,BACKGROUND_IMAGE_NAME);
+    public MainMenu(Stage stage, Runnable onStartGame,double screenWidth, double screenHeight) {
+        super(stage,BACKGROUND_IMAGE_NAME,screenWidth,screenHeight);
         this.onStartGame = onStartGame;
     }
 
-    public void show() {
+    public void show(double screenWidth, double screenHeight) {
         Button startGameButton=createImageButton(START_IMAGE,BUTTON_WIDTH,BUTTON_HEIGHT,onStartGame);
         Button tutorialButton=createImageButton(TUTORIAL_IMAGE,BUTTON_WIDTH,BUTTON_HEIGHT,this::showTutorial);
         Button exitButton=createImageButton(EXIT_IMAGE,BUTTON_WIDTH,BUTTON_HEIGHT,stage::close);
 
-        super.show(TITLE_IMAGE,startGameButton,tutorialButton,exitButton);
+        super.show(screenWidth,screenHeight,TITLE_IMAGE,startGameButton,tutorialButton,exitButton);
     }
 
 

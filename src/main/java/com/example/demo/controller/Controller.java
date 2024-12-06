@@ -28,7 +28,7 @@ public class Controller {
 	public void launchMainMenu() {
 		//MainMenu mainMenu = new MainMenu(stage, this::launchGame);
 		//mainMenu.show();
-		uiFactory.createMainMenu(stage,this::launchGame).show();
+		uiFactory.createMainMenu(stage,this::launchGame,stage.getWidth(), stage.getHeight()).show(stage.getWidth(), stage.getHeight());
 	}
 
 	public void launchGame() {
@@ -91,13 +91,13 @@ public class Controller {
 	}
 
 	public void showGameOver() {
-		uiFactory.createGameOver(stage,this::launchGame).show();
+		uiFactory.createGameOver(stage,this::launchGame,stage.getWidth(), stage.getHeight()).show(stage.getWidth(), stage.getHeight());
 		//GameOver gameOver = new GameOver(stage, this::launchGame);
 		//gameOver.show();
 	}
 
 	public void showWinGame() {
-		uiFactory.createWinGame(stage,this::launchGame).show();
+		uiFactory.createWinGame(stage,this::launchGame,stage.getWidth(), stage.getHeight()).show(stage.getWidth(), stage.getHeight());
 		//WinGame winGame = new WinGame(stage, this::launchGame);
 		//winGame.show();
 	}

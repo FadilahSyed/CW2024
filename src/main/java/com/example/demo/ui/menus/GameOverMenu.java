@@ -11,17 +11,17 @@ public class GameOverMenu extends AbstractMenu {
 
     private final Runnable onReplay;
 
-    public GameOverMenu(Stage stage, Runnable onReplay) {
-        super(stage,BACKGROUND_IMAGE_NAME);
+    public GameOverMenu(Stage stage, Runnable onReplay, double screenWidth, double screenHeight) {
+        super(stage,BACKGROUND_IMAGE_NAME, screenWidth, screenHeight);
         this.onReplay=onReplay;
     }
 
-    public void show() {
+    public void show(double screenWidth, double screenHeight) {
 
         Button replayButton=createImageButton(REPLAY_IMAGE,BUTTON_WIDTH,BUTTON_HEIGHT,onReplay);
         Button exitButton=createImageButton(EXIT_IMAGE,BUTTON_WIDTH,BUTTON_HEIGHT,stage::close);
 
-        super.show(GAMEOVER_IMAGE,replayButton,exitButton);
+        super.show(screenWidth, screenHeight,GAMEOVER_IMAGE,replayButton,exitButton);
     }
 
 }
