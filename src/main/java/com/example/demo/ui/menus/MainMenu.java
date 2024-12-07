@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 
 
 public class MainMenu extends AbstractMenu {
-    private static final String BACKGROUND_IMAGE_NAME = "gameoverbg.jpeg";
-    private static final String TITLE_IMAGE = "titleLabelImage.png";
+    private static final String BACKGROUND_IMAGE_NAME = "background1.jpg";
+    private static final String TITLE_IMAGE = "titleLabel.png";
     private static final String START_IMAGE = "startButtonImage.png";
     private static final String TUTORIAL_IMAGE = "tutorialButtonImage.png";
     private static final String EXIT_IMAGE = "exitButtonImage.png";

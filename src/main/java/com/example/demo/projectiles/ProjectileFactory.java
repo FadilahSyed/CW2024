@@ -10,7 +10,6 @@ public class ProjectileFactory {
             case "miniboss":
                 return new MiniBossProjectile(x, y);
             case "user": {
-                System.out.println("firefire");
                 return new UserProjectile(x,y);
             }
             default:

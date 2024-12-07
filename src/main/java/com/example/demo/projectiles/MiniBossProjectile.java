@@ -4,8 +4,8 @@ import com.example.demo.projectiles.movement.ProjectileMovementStrategy;
 import com.example.demo.projectiles.movement.ZigZagMovement;
 
 public class MiniBossProjectile extends Projectile {
-    private static final String IMAGE_NAME = "enemyFire.png";
-    private static final int IMAGE_HEIGHT = 25;
+    private static final String IMAGE_NAME = "minibossprojectile.png";
+    private static final int IMAGE_HEIGHT = 35;
     private final ProjectileMovementStrategy movementStrategy;
 
     public MiniBossProjectile(double initialXPos, double initialYPos) {

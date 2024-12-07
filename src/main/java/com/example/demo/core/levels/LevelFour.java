@@ -16,7 +16,6 @@ public class LevelFour extends AbstractLevel {
     @Override
     protected void checkIfGameOver() {
         if (getUser().isDestroyed()) {
-            System.out.println("userisdestroyed l1");
             loseGame();
         }
         else if (userHasReachedKillTarget()) {

@@ -23,7 +23,6 @@ public class LevelThree extends AbstractLevel {
     @Override
     protected void checkIfGameOver() {
         if (userIsDestroyed()) {
-            System.out.println("userisdestroyed l3");
             loseGame();
         }
         else if (userHasReachedKillTarget()) {

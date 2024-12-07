@@ -4,8 +4,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class GameOverMenu extends AbstractMenu {
-    private static final String BACKGROUND_IMAGE_NAME = "gameOverBackground.jpeg";
-    private static final String GAMEOVER_IMAGE = "gameover.png";
+    private static final String BACKGROUND_IMAGE_NAME = "gameoverbg.jpg";
+    private static final String GAMEOVER_IMAGE = "gameOverLabel.png";
     private static final String REPLAY_IMAGE = "replayButtonImage.png";
     private static final String EXIT_IMAGE = "exitButtonImage.png";
 

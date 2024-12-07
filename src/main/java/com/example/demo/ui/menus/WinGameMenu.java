@@ -4,8 +4,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class WinGameMenu extends AbstractMenu {
-    private static final String BACKGROUND_IMAGE_NAME = "winGameBackground.jpeg";
-    private static final String WIN_IMAGE = "youWin.png";
+    private static final String BACKGROUND_IMAGE_NAME = "winbg.jpg";
+    private static final String WIN_IMAGE = "youWinLabel.png";
     private static final String REPLAY_IMAGE = "replayButtonImage.png";
     private static final String EXIT_IMAGE = "exitButtonImage.png";
 

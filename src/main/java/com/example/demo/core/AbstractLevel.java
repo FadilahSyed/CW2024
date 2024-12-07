@@ -8,6 +8,7 @@ import com.example.demo.actors.planes.FighterPlane;
 import com.example.demo.controller.Controller;
 import com.example.demo.ui.LevelView;
 import com.example.demo.actors.planes.UserPlane;
+
 import com.example.demo.utils.BackgroundHandler;
 import com.example.demo.utils.CollisionHandler;
 import com.example.demo.utils.EnemySpawner;
@@ -27,7 +28,6 @@ public abstract class AbstractLevel {
 	private final double enemyMaximumYPosition;
 
 	private final Group root;
-	//private final Timeline timeline;
 	private final UserPlane user;
 	private final Scene scene;
 	private final ImageView background;
@@ -63,7 +63,6 @@ public abstract class AbstractLevel {
 		this.backgroundHandler=new BackgroundHandler(background,user,this);
 		this.collisionHandler=new CollisionHandler();
 		this.gameLoop=new GameLoop(MILLISECOND_DELAY,this::updateScene);
-
 		this.levelView = instantiateLevelView(config);
 		this.currentNumberOfEnemies = 0;
 

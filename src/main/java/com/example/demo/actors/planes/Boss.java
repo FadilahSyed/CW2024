@@ -11,7 +11,7 @@ import com.example.demo.ui.LevelViewLevelTwo;
 public class Boss extends FighterPlane {
 
 	// constant variables
-	private static final String IMAGE_NAME = "bossplane.png";
+	private static final String IMAGE_NAME = "boss.png";
 	private static final double INITIAL_X_POSITION = PlaneConstants.INITIAL_X_POSITION;
 	private static final double INITIAL_Y_POSITION = PlaneConstants.INITIAL_Y_POSITION;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = PlaneConstants.BOSS_PROJECTILE_Y_POSITION_OFFSET;

@@ -8,7 +8,7 @@ import com.example.demo.projectiles.ProjectileFactory;
 public class MiniBoss extends FighterPlane {
 
 
-    private static final String IMAGE_NAME = "enemyplane.png";
+    private static final String IMAGE_NAME = "miniboss.png";
 
     private static final int IMAGE_HEIGHT = PlaneConstants.MINIBOSS_IMAGE_HEIGHT;
     private static final double PROJECTILE_X_POSITION_OFFSET =PlaneConstants.MINIBOSS_PROJECTILE_X_POSITION_OFFSET;

@@ -20,7 +20,7 @@ public class PlaneConstants {
 
     //positions
 
-    public static final double INITIAL_X_POSITION = 1000.0;
+    public static final double INITIAL_X_POSITION = 950.0;
     public static final double INITIAL_Y_POSITION = 400;
     public static final double USER_INITIAL_X_POSITION = 5.0;
     public static final double USER_INITIAL_Y_POSITION = 300.0;
@@ -49,11 +49,11 @@ public class PlaneConstants {
 
 
     //image heights
-    public static final int BOSS_IMAGE_HEIGHT = 59;
-    public static final int ENEMY2_IMAGE_HEIGHT = 45;
-    public static final int ENEMY_IMAGE_HEIGHT = 56;
-    public static final int MINIBOSS_IMAGE_HEIGHT = 65;
-    public static final int USER_IMAGE_HEIGHT = 42;
+    public static final int BOSS_IMAGE_HEIGHT = 180;
+    public static final int ENEMY2_IMAGE_HEIGHT = 75;
+    public static final int ENEMY_IMAGE_HEIGHT = 66;
+    public static final int MINIBOSS_IMAGE_HEIGHT = 120;
+    public static final int USER_IMAGE_HEIGHT = 52;
 
 
     public static final int MOVE_FREQUENCY_PER_CYCLE = 5;

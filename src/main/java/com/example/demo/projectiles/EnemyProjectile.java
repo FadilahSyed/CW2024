@@ -5,8 +5,8 @@ import com.example.demo.projectiles.movement.StraightMovement;
 
 public class EnemyProjectile extends Projectile {
 	
-	private static final String IMAGE_NAME = "enemyFire.png";
-	private static final int IMAGE_HEIGHT = 10;
+	private static final String IMAGE_NAME = "enemyplaneprojectile.png";
+	private static final int IMAGE_HEIGHT = 15;
 	private static final int HORIZONTAL_VELOCITY = -10;
 	private final ProjectileMovementStrategy movementStrategy;
 

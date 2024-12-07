@@ -16,7 +16,7 @@ public class BackgroundHandler {
         this.background=background;
         this.user=user;
         this.level=level;
-    }
+  }
 
     public void initializeBackground(Group root,double screenWidth,double screenHeight) {
         background.setFocusTraversable(true);
@@ -43,6 +43,5 @@ public class BackgroundHandler {
         if(kc==KeyCode.UP|| kc==KeyCode.DOWN) user.stopVertical();
         if(kc==KeyCode.LEFT|| kc==KeyCode.RIGHT) user.stopHorizontal();
     }
-
 
 }

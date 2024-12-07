@@ -3,12 +3,10 @@ package com.example.demo.ui.components;
 import com.example.demo.utils.ImageLoader;
 import javafx.scene.image.ImageView;
 
-import java.util.Objects;
-
 public class ShieldImage extends ImageView {
 	
 	private static final String IMAGE_NAME = "shield.png";
-	private static final int SHIELD_SIZE = 200;
+	private static final int SHIELD_SIZE = 150;
 	
 	public ShieldImage() {
 		this.setImage(ImageLoader.load(IMAGE_NAME));

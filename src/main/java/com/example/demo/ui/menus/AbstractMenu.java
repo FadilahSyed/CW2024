@@ -15,7 +15,7 @@ public abstract class AbstractMenu {
     protected static final int BUTTON_HEIGHT=75;
     protected static final int BUTTON_WIDTH=250;
     protected static final int TITLE_HEIGHT=150;
-    protected static final int TITLE_WIDTH =600;
+    protected static final int TITLE_WIDTH =850;
     protected static final int SCREEN_WIDTH=1300;
     protected static final int SCREEN_HEIGHT =750;
 

@@ -7,19 +7,19 @@ import java.util.Map;
 public class LevelConfigFactory{
     private static final Map<String, LevelConfig> LEVEL_CONFIGS = Map.of(
             "LevelOne",new LevelConfig(
-                    "background1.jpeg","LevelTwo",5,10,0.2,0.0,5
+                    "background2.gif","LevelTwo",5,10,0.2,0.0,5
             ),
             "LevelTwo",new LevelConfig(
-                    "background1.jpeg","LevelThree",5,10,0.0,0.2,5
+                    "background2.gif","LevelThree",5,10,0.0,0.2,5
             ),
             "LevelThree",new LevelConfig(
-                    "background2.jpeg","LevelFour",3,3,0.0,0.0,5
+                    "background3.jpg","LevelFour",3,3,0.0,0.0,5
             ),
             "LevelFour",new LevelConfig(
-                    "background2.jpeg","LevelFinal",7,15,0.2,0.1,5
+                    "background4.gif","LevelFinal",7,15,0.2,0.1,5
             ),
             "LevelFinal",new LevelConfig(
-                    "background3.jpeg",null,1,1,0.0,0.0,5
+                    "background5.jpg",null,1,1,0.0,0.0,5
             )
     );
 

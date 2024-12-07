@@ -25,12 +25,14 @@ public class TutorialPopUp {
         popupStage.setTitle("How to Play?");
 
 
-        Label instructionsLabel = new Label("Welcome to Sky Battle!\n\n"
-                + "1. Use the arrow keys to move your character.\n" +
-                "2. Press the spacebar to shoot.\n" + "3. Shoot enemy planes and avoid their fire.\n" +
-                "4. Survive as long as you can to win!!!.\n\n" + "Have funnnn!"
+        Label instructionsLabel = new Label("Welcome to Space Battle!\n\n"
+                + "You are a plane far from home.\nCan you survive through the vast unknown?\n\n"
+                +"Instructions:\n"
+                + "\t1. Use the arrow keys to move your character.\n" +
+                "\t2. Press the spacebar to shoot.\n" + "\t3. Shoot enemy planes and avoid their fire.\n" +
+                "\t4. Survive as long as you can to win!!!.\n\n" + "Have funnnn!"
         );
-        instructionsLabel.setFont(new Font("Times New Roman",20));
+        instructionsLabel.setFont(new Font("Arial",15));
         instructionsLabel.setStyle("-fx-text-fill: black;");
 
         ImageView imageView = new ImageView(ImageLoader.load(GIF));
@@ -47,7 +49,7 @@ public class TutorialPopUp {
         layout.setBackground(new Background(new BackgroundFill(Color.LIGHTPINK,null,null)));
 
 
-        Scene scene = new Scene(layout, 500, 350);
+        Scene scene = new Scene(layout, 450, 400);
         popupStage.setScene(scene);
 
         popupStage.showAndWait();

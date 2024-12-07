@@ -3,8 +3,8 @@ package com.example.demo.projectiles;
 
 public class UserProjectile extends Projectile {
 
-	private static final String IMAGE_NAME = "userfire.png";
-	private static final int IMAGE_HEIGHT = 6;
+	private static final String IMAGE_NAME = "userplaneprojectile.png";
+	private static final int IMAGE_HEIGHT = 12;
 	private static final int HORIZONTAL_VELOCITY = 15;
 
 	public UserProjectile(double initialXPos, double initialYPos) {
