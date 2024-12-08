@@ -1,7 +1,5 @@
 package com.example.demo.core;
 
-import com.example.demo.core.LevelConfig;
-
 import java.util.Map;
 
 public class LevelConfigFactory{

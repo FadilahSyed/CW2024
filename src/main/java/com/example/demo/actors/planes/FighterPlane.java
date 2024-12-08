@@ -1,6 +1,7 @@
 package com.example.demo.actors.planes;
 
 import com.example.demo.actors.ActiveActorDestructible;
+import com.example.demo.utils.PlaneConstants;
 
 public abstract class FighterPlane extends ActiveActorDestructible {
 

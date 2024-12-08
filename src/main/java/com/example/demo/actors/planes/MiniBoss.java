@@ -4,6 +4,7 @@ import com.example.demo.actors.ActiveActorDestructible;
 import com.example.demo.actors.movement.RandomMovementPattern;
 import com.example.demo.actors.movement.MovementStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
+import com.example.demo.utils.PlaneConstants;
 
 public class MiniBoss extends FighterPlane {
 

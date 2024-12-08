@@ -7,6 +7,7 @@ import com.example.demo.actors.shield.ShieldManager;
 import com.example.demo.actors.shield.ShieldStrategy;
 import com.example.demo.projectiles.ProjectileFactory;
 import com.example.demo.ui.LevelViewLevelTwo;
+import com.example.demo.utils.PlaneConstants;
 
 public class Boss extends FighterPlane {
 

@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import java.util.Objects;
 
 public class ImageLoader {
-    private static final String IMAGE_PATH_PREFIX="/com/example/demo/images/";
+    private static final String IMAGE_PATH_PREFIX=PlaneConstants.IMAGE_PATH_PREFIX;
 
     public static Image load(String imageName) {
         try {

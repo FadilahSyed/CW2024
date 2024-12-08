@@ -1,4 +1,4 @@
-package com.example.demo.actors.planes;
+package com.example.demo.utils;
 
 public class PlaneConstants {
 
@@ -7,18 +7,23 @@ public class PlaneConstants {
     public static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
     public static final int ENEMY2_HORIZONTAL_VELOCITY = -5;
     public static final int ENEMY_HORIZONTAL_VELOCITY = -6;
+    public static final int MOVE_FREQUENCY_PER_CYCLE = 5;
 
     //health
     public static final int BOSS_INITIAL_HEALTH = 50;
     public static final int ENEMY_INITIAL_HEALTH = 1;
     public static final int MINIBOSS_INITIAL_HEALTH = 10;
 
+    //health display
+    public static final double HEART_DISPLAY_X_POSITION = 5;
+    public static final double HEART_DISPLAY_Y_POSITION = 25;
+
     //firerates
     public static final double BOSS_FIRE_RATE = .04;
     public static final double ENEMY_FIRE_RATE = .01;
     public static final double MINIBOSS_FIRE_RATE = .02;
 
-    //positions
+    //plane positions
 
     public static final double INITIAL_X_POSITION = 950.0;
     public static final double INITIAL_Y_POSITION = 400;
@@ -29,7 +34,8 @@ public class PlaneConstants {
     //shield
     public static final double SHIELD_PROBABILITY = .002;
     public static final int MAX_FRAMES_WITH_SHIELD = 100;
-
+    public static final double SHIELD_X_OFFSET=-150;
+    public static final double SHIELD_Y_OFFSET=-5;
     //levelbounds
     public static final int Y_POSITION_UPPER_BOUND = 100;
     public static final int Y_POSITION_LOWER_BOUND = 475;
@@ -48,16 +54,26 @@ public class PlaneConstants {
     public static final int USER_PROJECTILE_Y_POSITION_OFFSET = 20;
 
 
-    //image heights
+    //images
+
+    //plane
     public static final int BOSS_IMAGE_HEIGHT = 180;
     public static final int ENEMY2_IMAGE_HEIGHT = 75;
     public static final int ENEMY_IMAGE_HEIGHT = 66;
     public static final int MINIBOSS_IMAGE_HEIGHT = 120;
     public static final int USER_IMAGE_HEIGHT = 52;
 
+    //path
+    public static final String IMAGE_PATH_PREFIX="/com/example/demo/images/";
 
-    public static final int MOVE_FREQUENCY_PER_CYCLE = 5;
 
+    //menu
+    public static final int BUTTON_HEIGHT=75;
+    public static final int BUTTON_WIDTH=250;
+    public static final int TITLE_HEIGHT=150;
+    public static final int TITLE_WIDTH =850;
+    public static final int SCREEN_WIDTH=1300;
+    public static final int SCREEN_HEIGHT =750;
 
     private PlaneConstants() {
     }

@@ -13,23 +13,32 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * the {@code TutorialPopUp} class creates a popup window to display the
+ * game's instructions
+ * It explains the game rules and controls to the player
+ */
 public class TutorialPopUp {
 
     private static final String GIF = "calico.gif";
     protected static final int GIF_DIMENSIONS=100;
 
+    /**
+     * displays the tutorial popup window
+     *
+     * @param ownerStage the primary stage that owns the popup
+     */
     public void show(Stage ownerStage) {
         Stage popupStage = new Stage();
         popupStage.initModality(Modality.APPLICATION_MODAL); // Blocks interaction with the main window
         popupStage.initOwner(ownerStage);
         popupStage.setTitle("How to Play?");
 
-
         Label instructionsLabel = new Label("Welcome to Space Battle!\n\n"
-                + "You are a plane far from home.\nCan you survive through the vast unknown?\n\n"
+                + "You are a plane lost in space, far from home :(.\nCan you survive through the vast unknown?\n\n"
                 +"Instructions:\n"
                 + "\t1. Use the arrow keys to move your character.\n" +
-                "\t2. Press the spacebar to shoot.\n" + "\t3. Shoot enemy planes and avoid their fire.\n" +
+                "\t2. Press the spacebar to shoot.\n" + "\t3. Shoot enemies and avoid their fire.\n" +
                 "\t4. Survive as long as you can to win!!!.\n\n" + "Have funnnn!"
         );
         instructionsLabel.setFont(new Font("Arial",15));

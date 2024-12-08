@@ -17,7 +17,16 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
 
-public abstract class AbstractLevel {
+/**
+ * The {@code AbstractLevel} class serves as a base class for all game levels in this app
+ * It defines common behaviour/attributes shared in all levels
+ * uses CollisionHandler, GameLoop, ActorManagement, BackgroundHandler
+ * <p>
+ *     Subclasses implement abstract methods to define their own behaviour
+ *     -- eg. initializing friendly units, spawning enemies, determines gameover conditions
+*/
+
+ public abstract class AbstractLevel {
 	private final GameLoop gameLoop;
 	private boolean levelCompleted = false; //flag is true when the level is completed
 
@@ -44,6 +53,14 @@ public abstract class AbstractLevel {
 	private LevelEventListener eventListener;
 	private LevelView levelView;
 
+	/**
+	 * Constructs an {@code AbstractLevel} with the given configuration and screen dimensions
+	 * @param config 		The configuration for the levelConfig
+	 * @param screenHeight  The height of the game screen
+	 * @param screenWidth   The width of the game screen
+	 */
+
+
 	public AbstractLevel(LevelConfig config, double screenHeight, double screenWidth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
@@ -69,14 +86,42 @@ public abstract class AbstractLevel {
 		friendlyUnits.add(user);
 	}
 
+	/**
+	 * initialises friendly units in the level.
+	 * Must be implemented in subclasses to define the
+	 * placement + behaviour of friendly actors at the start of the level
+	 */
 	protected abstract void initializeFriendlyUnits();
 
+	/**
+	 * checks if the game is over.
+	 * must be implemented in subclasses to determine
+	 * level completion/level failure conditions
+	 */
 	protected abstract void checkIfGameOver();
 
+	/**
+	 * Spawns enemy units during the game.
+	 * must be implemented in subclasses to define
+	 * enemy behaviour
+	 */
 	protected abstract void spawnEnemyUnits();
 
+	/**
+	 * Instatiates the level view for displaying UI elements
+	 * such as health and score
+	 *
+	 * @param config the level configuration
+	 * @return A {@code LevelView} instance for the level
+	 */
 	protected abstract LevelView instantiateLevelView(LevelConfig config);
 
+	/**
+	 * initialises and returns the scene for this level,
+	 * including the background and units
+	 *
+	 * @return The {@code Scene} object representing the level
+	 */
 	public Scene initializeScene() {
 		backgroundHandler.initializeBackground(root,screenWidth,screenHeight);
 		initializeFriendlyUnits();
@@ -84,22 +129,41 @@ public abstract class AbstractLevel {
 		return scene;
 	}
 
+	/**
+	 * Sets the event listener for the level to handle events
+	 * like GAME_OVER or WIN_GAME
+	 *
+	 * @param listener The {@code LevelEventListener} to set
+	 */
 	public void setEventListener(LevelEventListener listener) {
 		this.eventListener=listener;
 	}
 
+	/**
+	 * starts the game loop for the level
+	 */
 	public void startGame() {
 		levelCompleted=false; //levelCompleted flag reset when level starts
 		background.requestFocus();
 		gameLoop.start();
 	}
 
+	/**
+	 * Stops the current level and notifies the listener to
+	 * proceed to the next level.
+	 * @param levelName The name of the next level to load
+	 */
 	public void goToNextLevel(String levelName) {
 		if (!levelCompleted && eventListener != null) {
 			gameLoop.stop();
 			eventListener.onLevelEvent(levelName);
 			levelCompleted = true;}
 	}
+
+	/**
+	 * Updates the game scene,
+	 * -- includes actor movement, collisions, game state checks, etc
+	 */
 	private void updateScene() {
 		spawnEnemyUnits();
 		updateActors();
@@ -112,15 +176,22 @@ public abstract class AbstractLevel {
 		checkIfGameOver();
 	}
 
+	/**
+	 * fires a projectile from the userplane
+	 */
 	public void fireProjectile() {
 		ActiveActorDestructible projectile = user.fireProjectile();
 		root.getChildren().add(projectile);
 		userProjectiles.add(projectile);
 	}
 
+	/**
+	 * generates fire from enemy units
+	 */
 	private void generateEnemyFire() {
 		enemyUnits.forEach(enemy -> spawnEnemyProjectile(((FighterPlane) enemy).fireProjectile()));
 	}
+
 
 	private void spawnEnemyProjectile(ActiveActorDestructible projectile) {
 		if (projectile != null) {
@@ -188,31 +259,60 @@ public abstract class AbstractLevel {
 		}
 	}
 
+	/**
+	 * Retrieves the user plane in this level
+	 * @return the {2code UserPLane} instance
+	 */
 	protected UserPlane getUser() {
 		return user;
 	}
 
+	/**
+	 * retrieves the root group containing all the actors in this level
+	 * @return The {@code Group} object
+	 */
 	protected Group getRoot() {
 		return root;
 	}
 
+	/**
+	 * retrieves the current number of enemies on the screen
+	 * @return The number of active enemies
+	 */
 	protected int getCurrentNumberOfEnemies() {
 		return enemyUnits.size();
 	}
 
+	/**
+	 * Adds an enemy unit to the level
+	 * @param enemy the enemy unit to add
+	 */
 	protected void addEnemyUnit(ActiveActorDestructible enemy) {
 		enemyUnits.add(enemy);
 		actorManager.addActor(enemy);
 	}
 
+	/**
+	 * retrieves the maximum allowable Y position coordinate for enemy actors
+	 * @return
+	 */
 	protected double getEnemyMaximumYPosition() {
 		return enemyMaximumYPosition;
 	}
 
+	/**
+	 * retrieves the screen width of the level
+	 * @return the screen width
+	 */
 	protected double getScreenWidth() {
 		return screenWidth;
 	}
 
+	/**
+	 * checks if player's plane is destroyed
+	 *
+	 * @return {@code true} if the plane is destroyed; otherwise, {@code false}
+	 */
 	protected boolean userIsDestroyed() {
 		return user.isDestroyed();
 	}
