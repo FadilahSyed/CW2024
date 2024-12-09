@@ -1,7 +1,7 @@
 package com.example.demo.ui;
 
 import com.example.demo.ui.components.ShieldImage;
-import com.example.demo.utils.PlaneConstants;
+import com.example.demo.utils.CommonConstants;
 import javafx.scene.Group;
 
 /**
@@ -11,8 +11,8 @@ import javafx.scene.Group;
  */
 public class LevelViewLevelTwo extends LevelView {
 
-	private static final double SHIELD_X_OFFSET  = PlaneConstants.SHIELD_X_OFFSET;
-	private static final double SHIELD_Y_OFFSET = PlaneConstants.SHIELD_Y_OFFSET;
+	private static final double SHIELD_X_OFFSET  = CommonConstants.SHIELD_X_OFFSET;
+	private static final double SHIELD_Y_OFFSET = CommonConstants.SHIELD_Y_OFFSET;
 	private final Group root;
 	private final ShieldImage shieldImage;
 

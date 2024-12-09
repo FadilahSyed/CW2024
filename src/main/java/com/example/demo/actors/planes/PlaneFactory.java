@@ -1,10 +1,19 @@
 package com.example.demo.actors.planes;
 
-import com.example.demo.actors.movement.MovementStrategy;
-import com.example.demo.actors.planes.*;
-import com.example.demo.ui.LevelViewLevelTwo;
-
+/**
+ * factory class for creating different types of fighter planes.
+ */
 public class PlaneFactory {
+    /**
+     * creates a fighter plane/actor based on the specified type.
+     *
+     * @param type   the type of plane (eg. enemy,enemy2,miniboss,boss,user).
+     * @param x      the initial X-coordinate of the plane.
+     * @param y      the initial Y-coordinate of the plane.
+     * @param health the initial health of the plane.
+     * @return an instance of a {@code FighterPlane}.
+     * @throws IllegalArgumentException if the specified plane type is unknown.
+     */
    public static FighterPlane createPlane(String type, double x, double y, int health) {
         switch (type.toLowerCase()) {
             case "user":

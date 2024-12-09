@@ -1,10 +1,15 @@
 package com.example.demo.utils;
 
-public class PlaneConstants {
+/**
+ * the {@code CommonConstants} class cntains globally accessible constants
+ * used throughout the application
+ * it helps centralise common values
+ */
+public class CommonConstants {
 
     //Movement
     public static final int VERTICAL_VELOCITY = 8;
-    public static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
+    public static final int MAX_FRAMES_WITH_SAME_MOVE = 7;
     public static final int ENEMY2_HORIZONTAL_VELOCITY = -5;
     public static final int ENEMY_HORIZONTAL_VELOCITY = -6;
     public static final int MOVE_FREQUENCY_PER_CYCLE = 5;
@@ -37,8 +42,8 @@ public class PlaneConstants {
     public static final double SHIELD_X_OFFSET=-150;
     public static final double SHIELD_Y_OFFSET=-5;
     //levelbounds
-    public static final int Y_POSITION_UPPER_BOUND = 100;
-    public static final int Y_POSITION_LOWER_BOUND = 475;
+    public static final int Y_POSITION_LOWER_BOUND = 100;
+    public static final int Y_POSITION_UPPER_BOUND = 475;
     public static final double Y_UPPER_BOUND = -40;
     public static final double Y_LOWER_BOUND = 600.0;
     public static final double X_LEFT_BOUND=5.0;
@@ -75,7 +80,10 @@ public class PlaneConstants {
     public static final int SCREEN_WIDTH=1300;
     public static final int SCREEN_HEIGHT =750;
 
-    private PlaneConstants() {
+    /**
+     * the class is not instantiated as it is used to hold static constant values
+     */
+    private CommonConstants() {
     }
 
 

@@ -20,6 +20,8 @@ public class WinGameMenu extends AbstractMenu {
      *
      * @param stage         the stage to display the menu
      * @param onReplay   the action to execute when the replay button is clicked
+     * @param screenWidth   the width of the menu screen
+     * @param screenHeight  the height of the menu screen
      */
 
     public WinGameMenu(Stage stage, Runnable onReplay,double screenWidth, double screenHeight) {

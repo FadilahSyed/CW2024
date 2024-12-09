@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.ui.GameUIFactory;
-import com.example.demo.utils.PlaneConstants;
+import com.example.demo.utils.CommonConstants;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,8 +12,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	private static final int SCREEN_WIDTH = PlaneConstants.SCREEN_WIDTH;
-	private static final int SCREEN_HEIGHT = PlaneConstants.SCREEN_HEIGHT;
+	private static final int SCREEN_WIDTH = CommonConstants.SCREEN_WIDTH;
+	private static final int SCREEN_HEIGHT = CommonConstants.SCREEN_HEIGHT;
 	private static final String TITLE = "Space Battle";
 
 	/**

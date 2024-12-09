@@ -21,8 +21,9 @@ public class MainMenu extends AbstractMenu {
      *
      * @param stage         the stage to display the menu
      * @param onStartGame   the action to execute when the start button is clicked
+     * @param screenWidth   the width of the menu screen
+     * @param screenHeight  the height of the menu screen
      */
-
     public MainMenu(Stage stage, Runnable onStartGame,double screenWidth, double screenHeight) {
         super(stage,BACKGROUND_IMAGE_NAME,screenWidth,screenHeight);
         this.onStartGame = onStartGame;
@@ -46,7 +47,6 @@ public class MainMenu extends AbstractMenu {
     /**
      * displays the tutorial pop up screen
      */
-
     public void showTutorial() {
         TutorialPopUp tutorial =new TutorialPopUp();
         tutorial.show(getStage());

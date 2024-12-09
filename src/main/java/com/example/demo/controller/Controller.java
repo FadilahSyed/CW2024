@@ -109,7 +109,11 @@ public class Controller {
 		uiFactory.createWinGame(stage,this::launchGame,stage.getWidth(), stage.getHeight()).show(stage.getWidth(), stage.getHeight());
 	}
 
-
+	/**
+	 * displays an error alert dialog when an exception occurs
+	 * -- contains error title, brief header message, exceptions message, stack trace
+	 * @param e the {@link Exception} that triggered the error alert
+	 */
 	private void showErrorAlert(Exception e) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error Loading Level");

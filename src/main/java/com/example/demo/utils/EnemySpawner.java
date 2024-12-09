@@ -6,15 +6,33 @@ import com.example.demo.core.LevelConfig;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+/**
+ * the {@code EnemySpawner} class handles the spawning of enemies in
+ * the game based on level configurations
+ */
 public class EnemySpawner {
     private final LevelConfig config;
     private final Random random;
 
+    /**
+     * constructs an {@code EnemySpawner} with the specified level configuration
+     *
+     * @param config the {@code LevelConfig} containing enemy spawn configurations
+     */
     public EnemySpawner(LevelConfig config) {
         this.config=config;
         this.random=new Random();
     }
 
+    /**
+     * spawns enemies based on the current number of enemies and the level configuration
+     *
+     * @param currentNumberOfEnemies the number of enemies currently on screen
+     * @param screenWidth            the width of the game screen
+     * @param enemyMaximumYPosition  the maximum Y-coordinate for spawning enemies
+     * @return a list of newly spawned enemy actors
+     */
     public List<ActiveActorDestructible> spawnEnemies(int currentNumberOfEnemies, double screenWidth, double enemyMaximumYPosition) {
         List<ActiveActorDestructible> newEnemies = new ArrayList<>();
         int enemiesToSpawn = config.getTotalEnemies() - currentNumberOfEnemies;

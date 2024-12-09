@@ -2,7 +2,7 @@ package com.example.demo.ui.menus;
 
 
 import com.example.demo.utils.ImageLoader;
-import com.example.demo.utils.PlaneConstants;
+import com.example.demo.utils.CommonConstants;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,12 +17,12 @@ import javafx.stage.Stage;
  */
 
 public abstract class AbstractMenu {
-    private static final int BUTTON_HEIGHT= PlaneConstants.BUTTON_HEIGHT;
-    private static final int BUTTON_WIDTH=PlaneConstants.BUTTON_WIDTH;
-    private static final int TITLE_HEIGHT=PlaneConstants.TITLE_HEIGHT;
-    private static final int TITLE_WIDTH =PlaneConstants.TITLE_WIDTH;
-    private static final int SCREEN_WIDTH=PlaneConstants.SCREEN_WIDTH;
-    private static final int SCREEN_HEIGHT =PlaneConstants.SCREEN_HEIGHT;
+    private static final int BUTTON_HEIGHT= CommonConstants.BUTTON_HEIGHT;
+    private static final int BUTTON_WIDTH= CommonConstants.BUTTON_WIDTH;
+    private static final int TITLE_HEIGHT= CommonConstants.TITLE_HEIGHT;
+    private static final int TITLE_WIDTH = CommonConstants.TITLE_WIDTH;
+    private static final int SCREEN_WIDTH= CommonConstants.SCREEN_WIDTH;
+    private static final int SCREEN_HEIGHT = CommonConstants.SCREEN_HEIGHT;
 
     private final Stage stage;
     private final ImageView background;
@@ -43,26 +43,49 @@ public abstract class AbstractMenu {
     }
 
 
+    /**
+     * retrieves height of button
+     * @return button height as an int
+     */
     public static int getButtonHeight() {
         return BUTTON_HEIGHT;
     }
-
+    /**
+     * retrieves width of button
+     * @return button witdh as an int
+     */
     public static int getButtonWidth() {
         return BUTTON_WIDTH;
     }
 
+    /**
+     * retrieves height of title
+     * @return title height as an int
+     */
     public static int getTitleHeight() {
         return TITLE_HEIGHT;
     }
 
+    /**
+     * retrieves width of button
+     * @return title wdith as an int
+     */
     public static int getTitleWidth() {
         return TITLE_WIDTH;
     }
 
+    /**
+     * retrieves wdith of screen
+     * @return screen width as an int
+     */
     public static int getScreenWidth() {
         return SCREEN_WIDTH;
     }
 
+    /**
+     * retrieves height of screen
+     * @return screen height as an int
+     */
     public static int getScreenHeight() {
         return SCREEN_HEIGHT;
     }
@@ -127,16 +150,21 @@ public abstract class AbstractMenu {
         return button;
     }
 
+    /**
+     * retrieves the stage associated with the current scene.
+     * @return the {@code Stage} object.
+     */
     public Stage getStage() {
         return stage;
     }
 
+    /**
+     * retrieves the background image as an {@code ImageView}
+     * @return the {@code ImageView} object representing the background.
+     */
     public ImageView getBackground() {
         return background;
     }
 
-    public String getBackgroundImageName() {
-        return backgroundImageName;
-    }
 }
 

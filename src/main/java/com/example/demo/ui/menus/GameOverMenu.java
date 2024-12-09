@@ -19,7 +19,9 @@ public class GameOverMenu extends AbstractMenu {
      * constructs a {@code GameOverMenu} with a specified action for restarting the game
      *
      * @param stage         the stage to display the menu
-     * @param onReplay   the action to execute when the replay button is clicked
+     * @param onReplay      the action to execute when the replay button is clicked
+     * @param screenHeight  height of screen
+     * @param screenWidth   width of screen
      */
     public GameOverMenu(Stage stage, Runnable onReplay, double screenWidth, double screenHeight) {
         super(stage,BACKGROUND_IMAGE_NAME, screenWidth, screenHeight);

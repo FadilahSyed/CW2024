@@ -18,17 +18,18 @@ import javafx.scene.Scene;
 import javafx.scene.image.*;
 
 /**
- * The {@code AbstractLevel} class serves as a base class for all game levels in this app
- * It defines common behaviour/attributes shared in all levels
+ * the {@code AbstractLevel} class serves as a base class for all game levels in this app
+ * it defines common behaviour/attributes shared in all levels
  * uses CollisionHandler, GameLoop, ActorManagement, BackgroundHandler
- * <p>
+ *
  *     Subclasses implement abstract methods to define their own behaviour
- *     -- eg. initializing friendly units, spawning enemies, determines gameover conditions
+ *     -- initializing friendly units, spawning enemies,
+ *     determines gameover conditions, instantiating level views
 */
 
  public abstract class AbstractLevel {
 	private final GameLoop gameLoop;
-	private boolean levelCompleted = false; //flag is true when the level is completed
+	private boolean levelCompleted = false;
 
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final int MILLISECOND_DELAY = 50;
@@ -59,8 +60,6 @@ import javafx.scene.image.*;
 	 * @param screenHeight  The height of the game screen
 	 * @param screenWidth   The width of the game screen
 	 */
-
-
 	public AbstractLevel(LevelConfig config, double screenHeight, double screenWidth) {
 		this.root = new Group();
 		this.scene = new Scene(root, screenWidth, screenHeight);
@@ -192,7 +191,10 @@ import javafx.scene.image.*;
 		enemyUnits.forEach(enemy -> spawnEnemyProjectile(((FighterPlane) enemy).fireProjectile()));
 	}
 
-
+	/**
+	 * spawns a new enemy projectile + adds it to the game
+	 * @param projectile the enemy projectile to be spawned
+	 */
 	private void spawnEnemyProjectile(ActiveActorDestructible projectile) {
 		if (projectile != null) {
 			root.getChildren().add(projectile);
@@ -200,6 +202,10 @@ import javafx.scene.image.*;
 		}
 	}
 
+	/**
+	 * spawn enemies based on level configurations
+	 * @param config the level configurations
+	 */
 	protected void spawnEnemies(LevelConfig config) {
 		EnemySpawner spawner=new EnemySpawner(config);
 		List<ActiveActorDestructible> newEnemies=spawner.spawnEnemies(
@@ -208,6 +214,10 @@ import javafx.scene.image.*;
 		newEnemies.forEach(this::addEnemyUnit);
 	}
 
+	/**
+	 * updates the state of all actors in the game
+	 * -- friendly units, enemy units, projectiles
+	 */
 	private void updateActors() {
 		actorManager.updateActors(friendlyUnits);
 		actorManager.updateActors(enemyUnits);
@@ -215,18 +225,29 @@ import javafx.scene.image.*;
 		actorManager.updateActors(enemyProjectiles);
 	}
 
+	/**
+	 * removes all destroyed actors from group root
+	 */
 	private void removeAllDestroyedActors() {
 		actorManager.removeDestroyedActors(friendlyUnits);
 		actorManager.removeDestroyedActors(enemyUnits);
 		actorManager.removeDestroyedActors(userProjectiles);
 		actorManager.removeDestroyedActors(enemyProjectiles);
 	}
+
+	/**
+	 * handles collisions, applies damage to affected actors
+	 */
 	private void handleCollisionsAndDamage() {
 		handleEnemyPenetration();
 		collisionHandler.handleCollisions(userProjectiles, enemyUnits);
 		collisionHandler.handleCollisions(enemyProjectiles, friendlyUnits);
 		collisionHandler.handleCollisions(friendlyUnits, enemyUnits);
 	}
+
+	/**
+	 * applies damage to player's plane when enemy penetrated defenses
+	 */
 	private void handleEnemyPenetration() {
 		for (ActiveActorDestructible enemy : enemyUnits) {
 			if (collisionHandler.enemyHasPenetratedDefenses(enemy, screenWidth)) {
@@ -236,15 +257,27 @@ import javafx.scene.image.*;
 		}
 	}
 
+	/**
+	 * updates visual display of player's health
+	 * -- hearts removed based on current health
+	 */
 	private void updateLevelView() {
 		levelView.removeHearts(user.getHealth());
 	}
 
+	/**
+	 * updates player's kill count based on destroyed enemy units
+	 */
 	private void updateKillCount() {
 		for (int i = 0; i < currentNumberOfEnemies - enemyUnits.size(); i++) {
 			user.incrementKillCount();
 		}
 	}
+
+	/**
+	 * handles when player wins game
+	 * stops gameloop and calls for the wingame screen
+	 */
 	protected void winGame() {
 		gameLoop.stop();
 		if(eventListener!=null) {
@@ -252,6 +285,10 @@ import javafx.scene.image.*;
 		}
 	}
 
+	/**
+	 * handles when player loses game
+	 * stops the gameloop and calls for the gameover screen
+	 */
 	protected void loseGame() {
 		gameLoop.stop();
 		if(eventListener!=null) {
@@ -294,7 +331,7 @@ import javafx.scene.image.*;
 
 	/**
 	 * retrieves the maximum allowable Y position coordinate for enemy actors
-	 * @return
+	 * @return maximum y coordinate
 	 */
 	protected double getEnemyMaximumYPosition() {
 		return enemyMaximumYPosition;
@@ -317,6 +354,9 @@ import javafx.scene.image.*;
 		return user.isDestroyed();
 	}
 
+	/**
+	 * updates current number of active enemies in the game
+	 */
 	private void updateNumberOfEnemies() {
 		currentNumberOfEnemies = enemyUnits.size();
 	}

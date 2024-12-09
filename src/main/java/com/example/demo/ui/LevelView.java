@@ -1,7 +1,7 @@
 package com.example.demo.ui;
 
 import com.example.demo.ui.components.HeartDisplay;
-import com.example.demo.utils.PlaneConstants;
+import com.example.demo.utils.CommonConstants;
 import javafx.scene.Group;
 
 /**
@@ -11,8 +11,8 @@ import javafx.scene.Group;
 
 public class LevelView {
 	
-	private static final double HEART_DISPLAY_X_POSITION = PlaneConstants.HEART_DISPLAY_X_POSITION;
-	private static final double HEART_DISPLAY_Y_POSITION = PlaneConstants.HEART_DISPLAY_Y_POSITION;
+	private static final double HEART_DISPLAY_X_POSITION = CommonConstants.HEART_DISPLAY_X_POSITION;
+	private static final double HEART_DISPLAY_Y_POSITION = CommonConstants.HEART_DISPLAY_Y_POSITION;
 	private final Group root;
 	private final HeartDisplay heartDisplay;
 
