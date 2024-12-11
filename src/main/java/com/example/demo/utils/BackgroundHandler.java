@@ -58,6 +58,10 @@ public class BackgroundHandler {
         if(kc==KeyCode.DOWN) user.moveDown();
         if(kc==KeyCode.LEFT) user.moveLeft();
         if(kc==KeyCode.RIGHT) user.moveRight();
+        if(kc==KeyCode.W) user.moveUp();
+        if(kc==KeyCode.S) user.moveDown();
+        if(kc==KeyCode.A) user.moveLeft();
+        if(kc==KeyCode.D) user.moveRight();
         if(kc==KeyCode.SPACE) level.fireProjectile();
     }
 
@@ -70,6 +74,8 @@ public class BackgroundHandler {
         KeyCode kc = e.getCode();
         if(kc==KeyCode.UP|| kc==KeyCode.DOWN) user.stopVertical();
         if(kc==KeyCode.LEFT|| kc==KeyCode.RIGHT) user.stopHorizontal();
+        if(kc==KeyCode.W|| kc==KeyCode.S) user.stopVertical();
+        if(kc==KeyCode.A|| kc==KeyCode.D) user.stopHorizontal();
     }
 
 }

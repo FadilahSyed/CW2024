@@ -1,7 +1,7 @@
 package com.example.demo.utils;
 
 /**
- * the {@code CommonConstants} class cntains globally accessible constants
+ * the {@code CommonConstants} class contains globally accessible constants
  * used throughout the application
  * it helps centralise common values
  */
@@ -9,7 +9,7 @@ public class CommonConstants {
 
     //Movement
     public static final int VERTICAL_VELOCITY = 8;
-    public static final int MAX_FRAMES_WITH_SAME_MOVE = 7;
+    public static final int MAX_FRAMES_WITH_SAME_MOVE = 5;
     public static final int ENEMY2_HORIZONTAL_VELOCITY = -5;
     public static final int ENEMY_HORIZONTAL_VELOCITY = -6;
     public static final int MOVE_FREQUENCY_PER_CYCLE = 5;

@@ -1,5 +1,6 @@
-package com.example.demo.ui.menus;
+package com.example.demo.ui.menu;
 
+import com.example.demo.ui.menus.TutorialPopUp;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 
