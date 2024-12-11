@@ -1,9 +1,48 @@
 # CW2024
-github repo
-
 This is the repository for Developing Maintainable Software (COMP2042) module coursework. 
+[GitHub Repository](https://github.com/FadilahSyed/CW2024)
 
 # Compilation Instructions
+## Prerequisites
+- A Java 21 JDK with JavaFX included
+- 
+The following tools may also be of use:
+- Apache Maven or an IDE that comes bundled with it such as IntelliJ IDEA.
+- git
+
+## Source Code
+ download the source code by cloning the repository:
+```shell
+git clone https://github.com/FadilahSyed/CW2024.git
+cd CW2024
+```
+    
+If you don't have git:  click on the code button on the GitHub page --> "Download ZIP". Then, extract the .zip file.
+
+## Building
+### From a CLI
+While in the source code folder:
+```shell
+# Unix/Windows with Maven installed
+mvn clean compile exec:java
+
+# Unix without Maven
+./mvnw clean compile exec:java
+
+# Windows without Maven
+mvnw.cmd clean compile exec:java
+```
+
+### From IntelliJ IDEA CE
+Open the project folder in IDEA, then navigate to Run -> Edit Configurations in the menu. Then, click the + button at the top left, select Maven and add
+```shell
+clean compile exec:java
+```
+to the run field.
+
+Click 'Apply' and then 'Okay'. Now, clicking the play button (green triangle) at the top right of the window should run the project.
+
+
 
 # Features:
 ## Implemented and Working Properly:
@@ -53,8 +92,7 @@ The package hierarchy is:
 - ![image](https://github.com/user-attachments/assets/356dd143-6608-422b-8b9e-d8b7b43011ff)
 ### 14. Space themed layout
 Most images (backgrounds, planes, projectiles, hearts) were replaced with a more pixelated space theme. Pixel images were used to replicate the retro look of the original 1942 arcade game. The miniboss and boss are aliens instead of planes.
-### 15. Junit Tests: 
-### 16. Overall encapsulation:
+### 15. Overall encapsulation:
 - Ensured fields were private and accessed via public getters/setters when necessary. 
 - Ensured objects were passed via a constructor or a setter to avoid creating dependencies directly inside the class.
 
