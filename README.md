@@ -4,43 +4,36 @@ This is the repository for Developing Maintainable Software (COMP2042) module co
 
 # Compilation Instructions
 ## Prerequisites
-- A Java 21 JDK with JavaFX included
-- 
-The following tools may also be of use:
-- Apache Maven or an IDE that comes bundled with it such as IntelliJ IDEA.
+- Java 21 JDK with JavaFX
+- Apache Maven
+
+ Optional: 
+- IDE (eg. IntelliJ IDEA)
 - git
 
-## Source Code
+## Clone the repository
  download the source code by cloning the repository:
 ```shell
 git clone https://github.com/FadilahSyed/CW2024.git
 cd CW2024
 ```
     
-If you don't have git:  click on the code button on the GitHub page --> "Download ZIP". Then, extract the .zip file.
+If you don't have git: 
+- Click on the code button on the GitHub page.
+- --> "Download ZIP".
+- Extract the .zip file.
 
-## Building
-### From a CLI
-While in the source code folder:
+## Build and run
+### From Command Line
 ```shell
-# Unix/Windows with Maven installed
-mvn clean compile exec:java
-
-# Unix without Maven
-./mvnw clean compile exec:java
-
-# Windows without Maven
-mvnw.cmd clean compile exec:java
+# with Maven installed
+mvn clean compile javafx:run
 ```
 
-### From IntelliJ IDEA CE
-Open the project folder in IDEA, then navigate to Run -> Edit Configurations in the menu. Then, click the + button at the top left, select Maven and add
-```shell
-clean compile exec:java
-```
-to the run field.
-
-Click 'Apply' and then 'Okay'. Now, clicking the play button (green triangle) at the top right of the window should run the project.
+### From IntelliJ IDEA
+- Import the project
+- Set up JDK 21
+- Run the application via the main method
 
 
 
@@ -297,6 +290,184 @@ New Java Classes are listed based on its location in the code.
 
 ## Modified Java Classes
 Modified java classes are listed based on location in the code.
+### <ins>Controller: </ins>
+#### 1. Level loading/creation
+- The original code directly used reflection (`Class.forName`) to load levels. This exposes internal implementation details and tightly couples the code to class names and reflection. This may lead to runtime errors if class names or constructors are incorrect. Furthermore, the original code also had to use the full path/package name for loading levels.
+- The modified code introduces a LevelFactory and AbstractLevel class for creating levels.
+- - The Factory pattern abstracts the creation logic of levels, encapsulating it within LevelFactory.createLevel(). It does not need the `LEVEL_ONE_CLASS_NAME` to store the full path of the level, just the level’s name, improving readability. This eliminates the risk by hardcoding the creation logic for known levels in multiple places. Directly instantiating objects is also faster compared to using reflection.
+- Allows adding new levels/change creation logic without modifying the controller (open/closed principle)
+- Enhances modularity and follows the Single Responsibility Principle (SRP).
+
+#### 2.Event Handling:
+Original Code: Relied on the observer pattern with Observable and Observer for game events. This was removed as the Observer class is deprecated in Java. The update() method also received strings for game events, which is error-prone and may lead to typos.
+- Modified Code: The observer is replaced by a custom event listener ‘LevelEventListener’ which uses lambdas. The events are also managed with a GameEvent enum and are validated dynamically. 
+
+#### 3.Exception Handling:
+- Original code: Used generic exception handling for reflection-based code and showed minimal error information in an Alert.
+- Modified code: Handles specific exceptions ‘IllegalArgumentException’ and adds a showErrorAlert method that states the exception title, some header text, a detailed error message and a stack trace in the console. This provided better debugging information.
+
+#### 4. Splitting the responsibilities of the Controller class
+- In the original code, the controller class handled everything: level navigation, reflection, game event handling, and error management.
+- GameUIFactory and LevelFactory now handle UI creation and level creation, leaving the controller to focus on controlling game flow and event handling. This was done for single responsibility. 
+
+#### 5. User Interface 
+- For the new user interface feature to be implemented, a GameUIFactory was made to encapsulate/centralise creation of UI components. This is injected into the controller. 
+- Enum is used for game events to avoid repeated string literals and provide type safety.
+- - “GAME_OVER” is for when the game is lost and “WIN_GAME” is for when the game is won.
+- The controller handles event listening and game event handling, where when a specific event occurs (such as “GAME_OVER” or “WIN_GAME”) the handleGameEvent() method calls the specific method to show the appropriate screens. 
+
+#### 6. Methods added:
+- launchMainMenu: launches the main menu screen, is used in Main
+- showGameOver: launches game over screen, is used in handleGameEvent method
+- showWinGame: launches win game screen, is used in handleGameEvent method
+- handleGameEvent: handles the game events by calling methods (showGameOver, showWinGame, loadAndStartLevel) required when an event occurs
+- loadAndStartLevel: replaces goToLevel to load and start specific levels
+- showErrorAlert: displays an error alert dialog when an exception occurs which contains an error title, brief header message, exceptions message and stack trace
+
+### <ins> Main:</ins>
+#### 1. Using CommonConstants
+- Constants, like `SCREEN_WIDTH` and `SCREEN_HEIGHT`, were hardcoded directly in the Main class. 
+- This was moved to the CommonConstants utility class to reduce duplication and make it easy to update.
+#### 2. Exception Handling
+- Exceptions thrown in the start method (eg. `ClassNotFoundException`, `InvocationTargetExcpetion`) were not handled explicitly which may result in the application crashing.
+- To improve debugging and provide meaningful error messages, the Main class wraps the controller instantiation and method calls within a try-catch block to catch exceptions and log errors to the console with “`System.err.println(“error launching game:” + e.getMessage());`
+#### 3. Using GameUIFactory
+- This is needed to load the main menu. Main class creates the factory instance and passes it to the controller as a dependency. 
+
+### <ins> AbstractLevel/LevelParent </ins>
+#### 1. Name changed
+#### 2.  Responsibilities are split to promote SRP
+- In the original code, all level-related functionalities were implemented directly within the LevelParent/Abstractlevel class. It held too many responsibilities and had a monolithic structure. 
+- The functionalities were broken down into helper classes:
+- - a) ActorManager: Manages the addition, update and removal of actors
+- - b) CollisionHandler: handles collision detection and enemy penetration, removing the nested loops in the AbstractLevel class
+- - c) BackgroundHandler: manages the background and user-plane interactions
+- - d) GameLoop: handles game’s timeline logic and replaces the timeline object that was hardcoded in the LevelParent/AbstractLevel class
+- - e) EnemySpawner: manages enemy spawning based on level configurations 
+- This was done to follow the Single Responsibility Principle (SRP) to make the codebase easier to extend or modify, as well as test.
+
+#### 3. Level Configuration
+- Level attributes like player’s health and background images were hardcoded in each level class, as well as the LevelParent. 
+- The new LevelConfig class passes level-specific configurations which makes levels easy to modify. 
+- AbstractLevel accepts LevelConfig in the constructor instead of passing individual parameters like `backgroundImageName`, `playerInitialHealth`,etc. - This also simplifies parameter management and supports centralised configurations.
+#### 4. Event Listener Integrated
+- Observable and Observer was used for event communication/listening/handling, which results in the code relying on deprecated classes. 
+- The LevelEventListener interface (newly added) is integrated to notify events for a level change or game status change (eg. game over, game won).
+- AbstractLevel also uses consistent event strings by importing gameEvent Enum to prevent it from string mismatch issues.
+#### 5. Utility class
+- In the original, the code to load images and backgrounds were hardcoded into every class. 
+- A centralised utility class was added to load images. BackgroundHandler and EnemySpawner were utility classes integrated into the class as well. 
+#### 6. Methods added:
+- `fireProjectile()`: Fires a projectile from the user plane.
+- `spawnEnemies(LevelConfig config)`: Spawns enemies dynamically based on configurations. 
+- `setEventListener(LevelEventListener listener)`: Sets an event listener for the level. 
+- `handleCollisionsAndDamage()`: Handles collisions and applies damage to actors. 
+- `updateKillCount()`: Updates the player's kill count. handleEnemyPenetration(): Applies damage to the player if enemies penetrate defenses. 
+- `updateLevelView()`: Updates the UI to reflect the player's health. 
+- `updateActors()`: Updates all actors (friendly, enemy, and projectiles) using ActorManager. 
+- `removeAllDestroyedActors()`: Removes destroyed actors using ActorManager.
+
+### <ins> LevelOne </ins>
+#### 1. Using LevelConfig and LevelConfigFactory
+- Hardcoded configuration values were embedded within the LevelOne class 
+- - e.g., `PLAYER_INITIAL_HEALTH`, `KILLS_TO_ADVANCE`, `TOTAL_ENEMIES`
+- This made the class tightly coupled to specific values, reducing flexibility for configuration changes. 
+- LevelConfig class was made and is introduced in all the level classes to encapsulate level-specific configurations (e.g., health, total enemies, spawn probability, kill targets, and next level). It uses LevelConfigFactory to load the configuration for "LevelOnel" dynamically.
+- - This reduces coupling, as it separates configuration data from the game logic, and encourages reuse and flexibility. 
+#### 2. Changing the spawnEnemyUnits logic
+- Originally, the logic for spawning enemy units was implemented directly within the LevelOne class. It included manual checks for the number of enemies and random spawn logic. 
+- This was modified so that the enemy spawning logic is moved to a reusable method `spawnEnemies(LevelConfig)` from the AbstractLevel class. LevelConfig provides parameters such as `ENEMY_SPAWN_PROBABILITY` and `TOTAL_ENEMIES`. 
+- This promotes reuse as the same spawning logic can be reused for other levels without duplication. LevelOne is also simplified and the class now focuses on level-specific behavior, delegating spawning to the parent class. 
+
+### <ins> LevelFinal </ins>
+#### 1. Name changed from leveltwo to levelfinal because it is used as the final level
+#### 2. Using LevelConfig and LevelConfigFactory
+- Hardcoded configuration values were embedded within the LevelFinal class 
+- - e.g., `PLAYER_INITIAL_HEALTH`, `KILLS_TO_ADVANCE`, `TOTAL_ENEMIES`
+- This made the class tightly coupled to specific values, reducing flexibility for configuration changes. 
+- LevelConfig class was made and is introduced in all the level classes to encapsulate level-specific configurations (e.g., health, total enemies, spawn probability, kill targets, and next level). It uses LevelConfigFactory to load the configuration for "LevelFinal" dynamically.
+- - This reduces coupling, as it separates configuration data from the game logic, and encourages reuse and flexibility. 
+
+### <ins> Boss</ins>
+#### 1. Strategies for Movement and Shielding
+- Originally, the Boss class contained hardcoded logic for movement patterns and shield management (updateShield() and initializeMovePattern()). 
+- - This violated the Single Responsibility Principle (SRP), as the class handled multiple concerns. 
+- The modified code extracts the movement and shield logic into separate strategy classes and injects them: 
+- - RandomMovementPattern (implements MovementStrategy) for movement behavior. 
+- - - Removes `initializeMovePattern()` method
+- - ShieldManager (implements ShieldStrategy) for managing the boss's shield. 
+- - - Removes `updateshield()`, `activateShield()` and `deactivateShield()` method
+- This was done for better separation of concerns. 
+- The Boss class now delegates movement and shield logic to respective strategies, keeping it focused on high-level behavior. 
+- This also encourages reusability as movement and shield strategies can be reused for other enemies or game objects. New movement or shield behaviors can also be added easily without modifying the Boss class.
+
+
+- Furthermore, the shield was not displaying because `activateShield()` and `deactivateShield()` was not calling the appropriate LevelView methods. This was changed for the shield to appear. For the Boss class to access LevelView, a parameter was added in the constructor, where the levelView reference had to be passed when Boss is instantiated. 
+
+#### 2. Using ProjectileFactory
+- Instead of directly creating a BossProjectile instance by hardcoding the projectile type, the code now introduces a ProjectileFactory to create projectiles dynamically based on a type identifier (“boss’). 
+- This improves flexibility and encourages reuse.
+#### 3. Using CommonConstants
+- Constants are moved to the CommonConstants utility class instead of being defined directly within the boss class. This centralises shared constants and reduces duplication, and improves maintainability.
+
+#### 4, Moved some logic into FighterPlane
+- The bounds check logic  and the shouldFire logic is moved into the superclass to avoid 
+
+### <ins>Enemyplane:</ins>
+#### 1. Uses CommonConstants
+- Constants are moved to the CommonConstants utility class instead of being defined directly within the boss class. 
+- This centralises shared constants and reduces duplication, and improves maintainability.
+#### 2. Uses ProjectileFactory 
+- Instead of directly creating an EnemyProjectile instance by hardcoding the projectile type, the code now introduces a ProjectileFactory to create projectiles dynamically based on a type identifier (“enemy). 
+- This improves flexibility and encourages reuse.
+
+
+### <ins>UserPlane:</ins>
+#### 1.Addition of Horizontal Movement
+- As the original code only supported vertical movement with `moveUp()` and `moveDown()`, horizontal movement logic was added with `moveLeft()`,` moveRight()` and `stopHorizontal()`. 
+- The method `updatePosition()` updates both vertical and horizontal positions and ensures the position remains within bounds using` X_LEFT_BOUND` and `X_RIGHT_BOUND`. 
+- This was necessary to add full 2D movement and enhance gameplay. 
+#### 2. Uses CommonConstants
+- Constants are moved to the CommonConstants utility class instead of being defined directly within the boss class. 
+- This centralises shared constants and reduces duplication, and improves maintainability.
+#### 3. Uses ProjectileFactory 
+- Instead of directly creating a UserProjectile instance by hardcoding the projectile type, the code now introduces a ProjectileFactory to create projectiles dynamically based on a type identifier (“user). 
+- This improves flexibility and encourages reuse.
+FighterPlane:
+#### 1. Uses CommonConstants
+- Constants are moved to the CommonConstants utility class instead of being defined directly within the boss class. 
+- This centralises shared constants and reduces duplication, and improves maintainability.
+#### 2. `shouldFire(double fireRate)` method added
+- It is a reusable method to determine whether a projectile should be fired based on a given fire rate probability.
+- This was done to reduce code duplication in the plane subclasses.
+#### 3. `isWithinBounds(double currentPosition)` method added
+- Bound checking logic is extracted into this method to check whether the current position of the plane is within vertical bounds. 
+- This allows plane subclasses to reuse this method instead of duplicating this logic.
+
+
+### <ins>ShieldImage: </ins>
+- Removed `this.setLayoutX(xPosition)`, `this.setLayoutY(yPosition)` to enable the shield to move dynamically and follow the boss’s position. 
+
+- `Added shieldImage.ToFront` so that the shield would appear. 
+- Removed redundant `addImagesToRoot` method and directly added the image to root in the constructor
+
+### <ins> LevelViewLevelTwo</ins>
+- Use of commonconstants
+-  Added updateShieldPosition() which calculates and updates the shield position by getting the boss’s position and adding it with an offset
+-  Removed `addImagesToRoot()` method and instead added the line `root.getChildren().addAll(shieldImage)` directly into the constructor to reduce redundancy, 
+
+### <ins>HeartDisplay</ins>
+#### 1. Using ImageLoader utility class:
+- Original: loaded heart images directly using `new Image(getClass().getResource(HEART_IMAGE_NAME).toExternalForm())`
+- Centralises image loading logic, improves reusability, simplifies maintenance. 
+#### 2. Removed `initializeContainer()` that sets up the container HBox, and instead initialise the container directly in the constructor to reduce redundancy and eliminate unnecessary method overhead. 
+#### 3 Simplified the constructor:
+- The original code explicitly stored `containerXPosition`, `containerYPosition` and `numberOfHeartsToDisplay` as instance variables, even though they were only used during instantiation. These were removed.
+#### 4. Declares container as final: `private final HBox container = new HBox()`
+- Instead of initialising it in the method and making it non-final, this ensures immutability where the container reference cannot be reassigned. 
+#### 5. Renamed heart.png to health.png for a more generic and consistent name.
+
+
 
 
 # Unexpected Problems:
@@ -325,15 +496,31 @@ In the end, I copied the way that AbstractLevel/BackgroundHandler manages the ba
 ### 3. ZigZag Projectile Movement
 The Zig Zag Projectile movement was coded as:
 
-![image](https://github.com/user-attachments/assets/2370f085-f837-43d9-a27e-ccd94b075be0)
-
+```shell
+private static final int HORIZONTAL_VELOCITY = 10; 
+private static final int ZIGZAG_AMPLITUDE = 5; 
+private int direction = 1; 
+@Override 
+public void updatePosition(Projectile projectile) { 
+    projectile.moveHorizontally(HORIZONTAL_VELOCITY); 
+    projectile.moveVertically(direction * ZIGZAG_AMPLITUDE); 
+direction *= -1; }
+```
 Where the direction would be alternated every time its position is updated. 
 However, it appeared more like 2 projectiles glitching through the screen.
 
 Now, it follows the movement of a sin graph to simulate the 'zig-zag' effect. 
 
-![image](https://github.com/user-attachments/assets/4cfe04f2-4d82-4012-b5ed-0e04210cb26a)
+```shell
+public void updatePosition(Projectile projectile) {
+        projectile.moveHorizontally(HORIZONTAL_VELOCITY);
 
+        double verticalOffset = VERTICAL_AMPLITUDE * Math.sin(2 * Math.PI * frameCount / VERTICAL_CYCLE);
+        projectile.moveVertically(verticalOffset);
+
+        frameCount++;
+    }
+```
 
 ### 4. Splitting up LevelParent/AbstractLevel
 This took some time, many tries, many abandoned branches, and many instances of leaving it on hold. 
